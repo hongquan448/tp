@@ -1,6 +1,7 @@
-package event;
+package task.event;
 
 import org.junit.jupiter.api.Test;
+import task.Event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -8,18 +9,18 @@ import static org.junit.jupiter.api.Assertions.fail;
 /**
  * Contains all the tests related to the Event class.
  */
-class EventTest {
+class TaskTest {
 
     @Test
     void eventInformation() throws Exception {
-        assertEquals("Team Meeting at Mar 21 2020 from 09:00 to 17:00",
+        assertEquals("[E] Team Meeting at Mar 21 2020 from 09:00 to 17:00 with priority 1",
                 new Event("Team Meeting", "2020-03-21", "09:00",
-                        "17:00", "1").getEventInformation());
+                        "17:00", "1").getTaskInformation());
     }
 
     @Test
     void formattedDetails() throws Exception {
-        assertEquals("Team Meeting#2020-03-21#09:00#17:00#1",
+        assertEquals("E#Team Meeting#2020-03-21#09:00#17:00#1\n",
                 new Event("Team Meeting", "2020-03-21", "09:00",
                         "17:00", "1").getFormattedDetails());
     }

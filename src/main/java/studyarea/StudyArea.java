@@ -3,10 +3,12 @@ package studyarea;
 import ui.Ui;
 
 import static java.lang.System.lineSeparator;
+import static ui.Constants.MAX_LINE_LENGTH;
+import static ui.Constants.TAB;
 
 
 /**
- * This is the Study Area class. All study area is stored as a Study Area object.
+ * This is the StudyArea class. All study area is stored as a Study Area object.
  */
 
 public class StudyArea {
@@ -18,47 +20,77 @@ public class StudyArea {
     private int maxPax;
 
     /**
-     * Constructs a Location class for a study area location with its information
+     * Constructs a StudyArea class for a study area with its information
      * Precondition: 'All variables have to be filled.
      *
-     * @param name name of study location
-     * @param address address of study location
-     * @param faculty faculty of study location
+     * @param name name of StudyArea
+     * @param address address of StudyArea
+     * @param faculty faculty of StudyArea
      * @param hasPort true for availability of ports, else false
      * @param isIndoor true for indoor, else false
-     * @param maxPax maximum number of seats for this study area
+     * @param maxPax maximum number of seats for this StudyArea
      */
 
     public StudyArea(String name, String address, String faculty, boolean hasPort,
-                    boolean isIndoor, int maxPax) {
+                     boolean isIndoor, int maxPax) {
         this.name = name;
-        this.address = Ui.formatMessage(address, Ui.ADDRESS_MAX_LENGTH).trim();
+        this.address = address.trim();
         this.faculty = faculty;
         this.hasPort = hasPort;
         this.isIndoor = isIndoor;
         this.maxPax = maxPax;
     }
 
+    /**
+     * This is the getter for the name attribute.
+     *
+     * @return general name of the StudyArea.
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * This is the getter for the address attribute.
+     *
+     * @return physical address of the StudyArea.
+     */
     public String getAddress() {
         return this.address;
     }
 
+    /**
+     * This is the getter for the faculty attribute.
+     *
+     * @return the name of the faculty that the StudyArea is located at.
+     */
     public String getFaculty() {
         return this.faculty;
     }
 
+    /**
+     * This is the getter for the hasPort attribute.
+     *
+     * @return true if the StudyArea has ports and false if otherwise.
+     */
     public boolean hasPort() {
         return this.hasPort;
     }
 
+    /**
+     * This is the getter for the isIndoor attribute.
+     *
+     * @return true if StudyArea is indoors and false if otherwise.
+     */
     public boolean isIndoor() {
         return this.isIndoor;
     }
 
+    /**
+     * This is the getter for the maxPax attribute.
+     *
+     * @return maximum number of pax the StudyArea can hold.
+     */
     public Integer getMaxPax() {
         return this.maxPax;
     }
@@ -68,13 +100,14 @@ public class StudyArea {
      * @return String value of all the attributes of the specific StudyArea.
      */
     public String toString() {
-        String text = Ui.TAB + "Name: " + this.name + lineSeparator() + Ui.TAB
-                 + "Address: " + this.address + lineSeparator() + Ui.TAB
-                 + "Faculty: " + this.faculty + lineSeparator() + Ui.TAB
-                 + "Port: " + this.hasPort + lineSeparator() + Ui.TAB
-                 + "Indoor: " + this.isIndoor + lineSeparator() + Ui.TAB
-                 + "Average number of Pax: " + this.maxPax;
-        String line = Ui.TAB + "__________________________________________________________";
+        String text = TAB + "Name: " + this.name + lineSeparator()
+                + Ui.formatMessage("Address: " + this.address, MAX_LINE_LENGTH)
+                + lineSeparator() + TAB
+                + "Faculty: " + this.faculty + lineSeparator() + TAB
+                + "Port: " + this.hasPort + lineSeparator() + TAB
+                + "Indoor: " + this.isIndoor + lineSeparator() + TAB
+                + "Maximum number of Pax: " + this.maxPax;
+        String line = TAB + "__________________________________________________________";
         return line + lineSeparator() + text + lineSeparator() + line;
     }
 

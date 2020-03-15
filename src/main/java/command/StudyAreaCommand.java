@@ -4,28 +4,36 @@ import studyarea.IllegalStudyAreaException;
 import studyarea.StudyArea;
 import studyarea.StudyAreaList;
 import ui.Ui;
-
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
+import static ui.Constants.AVAILABLE_STUDY_AREAS;
+import static ui.Constants.BYE_COMMAND;
+import static ui.Constants.EMPTY_LIST;
+import static ui.Constants.EMPTY_LOCATION;
+import static ui.Constants.END_MESSAGE;
+import static ui.Constants.FLAGS;
+import static ui.Constants.HELP_COMMAND;
+import static ui.Constants.PROMPT_USER;
+import static ui.Constants.START_STUDY_AREA_SEARCH;
+
 
 /**
- * This is the Study Area Command class. It executes the Study Area Search function and interact with Users accordingly.
+ * This is the StudyAreaCommand class. It executes the StudyArea Search function and interact with Users accordingly.
  */
 
 public class StudyAreaCommand {
 
     /**
-     * List out all the study areas that match with User's preference.
+     * List out all the StudyAreas that match with User's preference.
+     * @param ui This allows for StudyAreaCommand to interact with Users.
      * @param availStudyAreas this is the list of all study areas in location.txt.
      */
-    public static void printList(ArrayList<StudyArea> availStudyAreas) {
+    public static void printList(ArrayList<StudyArea> availStudyAreas, Ui ui) {
         if (availStudyAreas.isEmpty()) {
-            System.out.println(Ui.formatMessage(Ui.EMPTY_LIST, Ui.MAX_LINE_LENGTH));
+            ui.printMessage(EMPTY_LIST);
         } else {
-            System.out.println(Ui.formatMessage(Ui.AVAILABLE_STUDY_AREAS, Ui.MAX_LINE_LENGTH));
+            ui.printMessage(AVAILABLE_STUDY_AREAS);
             for (StudyArea studyArea : availStudyAreas) {
-                System.out.println(studyArea.toString());
+                ui.printStudyArea(studyArea);
             }
         }
     }
@@ -34,47 +42,59 @@ public class StudyAreaCommand {
     /**
      * Filters command based on User Input.
      * @param command This is the command entered by User.
-     * @param studyAreaList This is the list of all Study Areas in location.txt.
+     * @param studyAreaList This is the list of all StudyAreas in location.txt.
+     * @param ui This allows for StudyAreaCommand to interact with Users.
      * @return boolean status. False if User enters "end" , else will always return true;
+     * @throws IllegalStudyAreaException if User enters invalid commands.
      */
 
-    public static boolean filterCommand(String command, StudyAreaList studyAreaList) {
-        switch (command) {
-        case Ui.END_COMMAND :
-            System.out.println(Ui.formatMessage(Ui.END_MESSAGE, Ui.MAX_LINE_LENGTH));
-            return false;
-        case Ui.HELP_COMMAND :
-            System.out.println(Ui.FLAGS);
-            break;
-        default:
-            try {
-                ArrayList<StudyArea> availStudyAreas = studyAreaList.searchList(command);
-                printList(availStudyAreas);
-                System.out.println(Ui.formatMessage(Ui.PROMPT_USER, Ui.MAX_LINE_LENGTH));
-            } catch (IllegalStudyAreaException e) {
-                System.out.println(Ui.formatMessage(e.getMessage(), Ui.MAX_LINE_LENGTH));
+    public static boolean filterCommand(String command, StudyAreaList studyAreaList, Ui ui) throws
+            IllegalStudyAreaException {
+
+        command = command.trim();
+        if (command.isBlank()) {
+            throw new IllegalStudyAreaException(EMPTY_LOCATION);
+        } else {
+            switch (command) {
+            case BYE_COMMAND:
+                ui.printMessage(END_MESSAGE);
+                return false;
+            case HELP_COMMAND:
+                ui.printMessage(FLAGS);
+                break;
+            default:
+                try {
+                    ArrayList<StudyArea> availStudyAreas = studyAreaList.searchList(command);
+                    printList(availStudyAreas, ui);
+                    ui.printMessage(PROMPT_USER);
+                } catch (IllegalStudyAreaException e) {
+                    ui.printMessage(e.getMessage());
+                }
+                break;
             }
         }
         return true;
     }
-
+    
     /**
-     * Executes the Study Area search feature.
+     * Executes the StudyArea search feature.
+     * @param ui This allows for StudyAreaCommand to interact with Users.
      * @param studyAreaList studyAreaList object that holds information on studyAreas available.
      */
-    public static void runCommands(StudyAreaList studyAreaList) {
-
-        Ui ui = new Ui();
+    public static void runCommands(StudyAreaList studyAreaList, Ui ui)  {
         ui.printLine();
-        System.out.println(Ui.formatMessage(Ui.START_STUDY_AREA_SEARCH, Ui.MAX_LINE_LENGTH));
-        Scanner in = new Scanner(System.in);
+        ui.printMessage(START_STUDY_AREA_SEARCH);
         boolean status = true;
         while (status) {
-            Ui.printLine();
-            String command = in.nextLine();
-            Ui.printLine();
-            status = filterCommand(command, studyAreaList);
+            ui.printLine();
+            String command = ui.getUserIn().toLowerCase();
+            ui.printLine();
+            try {
+                status = filterCommand(command, studyAreaList, ui);
+            } catch (IllegalStudyAreaException e) {
+                ui.printMessage(e.getMessage());
+            }
         }
-        Ui.printLine();
+        ui.printLine();
     }
 }

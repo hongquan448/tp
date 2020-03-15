@@ -1,1 +1,53 @@
 James Gosling
+task
+clear
+event meeting /d 2020-05-05 /s 12:00 /e 13:00 /p 1
+view
+deadline assignment /d 2020-05-02 /t 14:00 /p 2
+priority_view
+view
+search
+
+search meet
+search homework
+delete 3
+event team meeting
+delete one
+view
+edit 2
+6
+-1
+1
+team meeting
+view
+edit 2
+2
+2020-01-01
+2020-06-06
+event
+view list
+task
+countdown
+bye
+task
+countdown view
+countdown
+bye
+study
+
+help
+erc
+src
+sbux
+-i -i
+-i -o
+-i
+-p
+-s
+-s wegf
+-s 8
+-s 1
+-
+-qef
+bye
+bye
