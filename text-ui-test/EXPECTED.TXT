@@ -13,7 +13,7 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________
 	 Hello James Gosling!
 	 Welcome to OrgaNice! To start, enter "task" to start your
-	 event list! If you are in the mood to mug and you want to
+	 task list! If you are in the mood to mug and you want to
 	 start your study area list, enter "study" !If you want to
 	 exit, enter "bye" !
 ________________________________________________________________________________________________
@@ -31,28 +31,28 @@ ________________________________________________________________________________
 	 search <keyword found in task> ------------ View existing task that contains the keyword
 	 delete <index number of task> ------------- Delete the task
 	 edit <index number of task> --------------- Edit the task
+	 schedule <number of task to be scheduled> - Schedule tasks
 	 help -------------------------------------- View List Of Commands Supported
 	 bye --------------------------------------- Terminate task interface
 	 Notes:
 	 *All dates should follow YYYY-MM-DD format
 	 *All timing should follow 24 hour clock
-	 *There are 4 levels of priority, with 1 being the most urgent, and 4 being the least urgent
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
 	 The list of tasks is cleared.
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
-	 A new event with the following information has been added.
+	 A new task with the following information has been added.
 	 [E] meeting at May 5 2020 from 12:00 to 13:00 with
 	 priority 1
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
-	 Here is the list of events added so far:
+	 Here is the list of tasks added so far:
 	 1) [E] meeting at May 5 2020 from 12:00 to 13:00 with
 	 priority 1
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
-	 A new event with the following information has been added.
+	 A new task with the following information has been added.
 	 [D] assignment on May 2 2020 at 14:00 with priority 2
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
@@ -63,7 +63,7 @@ ________________________________________________________________________________
 	 priority 1
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
-	 Here is the list of events added so far:
+	 Here is the list of tasks added so far:
 	 1) [D] assignment on May 2 2020 at 14:00 with priority 2
 	 2) [E] meeting at May 5 2020 from 12:00 to 13:00 with
 	 priority 1
@@ -84,14 +84,16 @@ ________________________________________________________________________________
 	 deleted
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
-	 Index 1 out of bounds for length 1
+	 Please follow the correct format to add a new event
+	 event <event details> /d <date> /s <start time> /e <end
+	 time> /p <priority of event>
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
 	 Enter a valid integer index (1-based) to delete/edit the
 	 corresponding event (format: delete/edit index)
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
-	 Here is the list of events added so far:
+	 Here is the list of tasks added so far:
 	 1) [D] assignment on May 2 2020 at 14:00 with priority 2
 	 2) [E] meeting at May 5 2020 from 12:00 to 13:00 with
 	 priority 1
@@ -109,8 +111,8 @@ ________________________________________________________________________________
 	 4. End Time
 	 5. Priority
 
-	 Please enter a valid number
-	 Please enter a valid number
+	 Please enter a valid number from the list
+	 Please enter a valid number from the list
 	 Enter new description:
 	 Updated Details:
 	 [E] team meeting at May 5 2020 from 12:00 to 13:00 with
@@ -121,7 +123,7 @@ ________________________________________________________________________________
 	 successfully
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
-	 Here is the list of events added so far:
+	 Here is the list of tasks added so far:
 	 1) [D] assignment on May 2 2020 at 14:00 with priority 2
 	 2) [E] team meeting at May 5 2020 from 12:00 to 13:00 with
 	 priority 1
@@ -151,6 +153,26 @@ ________________________________________________________________________________
 	 successfully
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
+________________________________________________________________________________________________
+	 The deadline details are as follows:
+	 [D] assignment on May 2 2020 at 14:00 with priority 2
+	 Which field of the deadline to edit? (Enter Corresponding
+	 Number)
+	 1. Description
+	 2. Date
+	 3. Due Time
+	 4. Priority
+
+	 Please enter a valid number from the list
+	 Enter new description:
+	 Updated Details:
+	 [D] assignment on May 2 2020 at 14:00 with priority 2
+________________________________________________________________________________________________
+________________________________________________________________________________________________
+	 The task at the mentioned index has been edited
+	 successfully
+________________________________________________________________________________________________
+________________________________________________________________________________________________
 	 Event details are not provided
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
@@ -158,14 +180,6 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
 	 Invalid command entered, Please enter a valid command
-________________________________________________________________________________________________
-________________________________________________________________________________________________
-	 Here is the list of tasks with sorted based on the number
-	 of days left:
-	 1) [D] assignment on May 2 2020 at 14:00 with priority 2
-	 ---> 49 day(s) left
-	 2) [E] team meeting at Jun 6 2020 from 12:00 to 13:00 with
-	 priority 1 ---> 84 day(s) left
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
 	 Bye!!!!!!
@@ -188,24 +202,16 @@ ________________________________________________________________________________
 	 search <keyword found in task> ------------ View existing task that contains the keyword
 	 delete <index number of task> ------------- Delete the task
 	 edit <index number of task> --------------- Edit the task
+	 schedule <number of task to be scheduled> - Schedule tasks
 	 help -------------------------------------- View List Of Commands Supported
 	 bye --------------------------------------- Terminate task interface
 	 Notes:
 	 *All dates should follow YYYY-MM-DD format
 	 *All timing should follow 24 hour clock
-	 *There are 4 levels of priority, with 1 being the most urgent, and 4 being the least urgent
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
 	 Wrong command used to view countdown of events (Should be
 	 :countdown )
-________________________________________________________________________________________________
-________________________________________________________________________________________________
-	 Here is the list of tasks with sorted based on the number
-	 of days left:
-	 1) [D] assignment on May 2 2020 at 14:00 with priority 2
-	 ---> 49 day(s) left
-	 2) [E] team meeting at Jun 6 2020 from 12:00 to 13:00 with
-	 priority 1 ---> 84 day(s) left
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
 	 Bye!!!!!!
@@ -226,13 +232,10 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
 	 Here is a list of supported flags!
-	 -p for study areas
-	 with ports
+	 -p for study areas with ports
 	 -i for study areas that are indoors
-	 -i for
-	 study areas that are outdoors
-	 -s {size} for maximum
-	 number of pax
+	 -o for study areas that are outdoors
+	 -s {size} for maximum number of pax
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
 	 Here are the available study areas!
@@ -251,7 +254,7 @@ ________________________________________________________________________________
 	 Ground Level
 	 Faculty: Utown
 	 Port: true
-	 Indoor: false
+	 Indoor: true
 	 Maximum number of Pax: 5
 	 __________________________________________________________
 	 __________________________________________________________
@@ -331,7 +334,7 @@ ________________________________________________________________________________
 	 Ground Level
 	 Faculty: Utown
 	 Port: true
-	 Indoor: false
+	 Indoor: true
 	 Maximum number of Pax: 5
 	 __________________________________________________________
 	 Please enter the location for your desired study area.
@@ -344,6 +347,15 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________
 ________________________________________________________________________________________________
 	 Here are the available study areas!
+	 __________________________________________________________
+	 Name: Starbucks
+	 Address: 2 College Avenue West Education Resource Centre,
+	 Ground Level
+	 Faculty: Utown
+	 Port: true
+	 Indoor: true
+	 Maximum number of Pax: 5
+	 __________________________________________________________
 	 __________________________________________________________
 	 Name: MacCommons
 	 Address: 2 College Avenue West Education Resource Centre,
@@ -464,7 +476,7 @@ ________________________________________________________________________________
 	 Ground Level
 	 Faculty: Utown
 	 Port: true
-	 Indoor: false
+	 Indoor: true
 	 Maximum number of Pax: 5
 	 __________________________________________________________
 	 __________________________________________________________
@@ -625,7 +637,7 @@ ________________________________________________________________________________
 	 Ground Level
 	 Faculty: Utown
 	 Port: true
-	 Indoor: false
+	 Indoor: true
 	 Maximum number of Pax: 5
 	 __________________________________________________________
 	 __________________________________________________________

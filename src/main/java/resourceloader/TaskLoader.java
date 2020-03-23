@@ -17,11 +17,13 @@ import java.util.Scanner;
 import static ui.Constants.FILE_PATH_DICTIONARY;
 import static ui.Constants.FILE_PATH_STUDYAREAS;
 
-
 /**
  * Handles the task of loading and storing events.
  */
 public class TaskLoader {
+
+    public static final String INVALID_TASK_TYPE_MESSAGE = "Invalid task type identified when parsing tasks from "
+            + "taskList.txt";
 
     /** Location of data file. */
     private String filePath;
@@ -87,6 +89,8 @@ public class TaskLoader {
             break;
         default:
             // Error handling
+            assert false : INVALID_TASK_TYPE_MESSAGE;
+            break;
         }
         return newTask;
     }
@@ -135,7 +139,8 @@ public class TaskLoader {
         try {
             Files.createDirectories(fileDirectory);
             Files.createFile(Paths.get(filePath));
-            StudyAreaLoader.createNewStudyAreaData();
+            StudyAreaLoader.createNewStudyAreaData(FILE_PATH_STUDYAREAS);
+            StudyAreaLoader.createNewStudyAreaData(FILE_PATH_DICTIONARY);
         } catch (IOException e) {
             e.printStackTrace();
         }

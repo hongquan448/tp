@@ -1,7 +1,6 @@
-package task.event;
+package task;
 
 import org.junit.jupiter.api.Test;
-import task.Event;
 import ui.Ui;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,7 +16,7 @@ class TaskListTest {
 
     public TaskListTest() throws Exception {
         taskList = new task.TaskList();
-        taskList.addTask(new Event("Team Meeting", "2020-03-21", "09:00",
+        taskList.addTask(new Event("Team Meeting", "2021-03-21", "09:00",
                 "17:00", "1"),ui);
     }
 
@@ -37,7 +36,7 @@ class TaskListTest {
             taskList.searchTasks("",ui);
             fail("Empty string search not identified");
         } catch (Exception exception) {
-            assertEquals("Keyword is empty", exception.getMessage());
+            assertEquals("Keyword to be used for search is empty", exception.getMessage());
         }
     }
 

@@ -1,7 +1,6 @@
-package task.event;
+package task;
 
 import org.junit.jupiter.api.Test;
-import task.Event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -9,19 +8,19 @@ import static org.junit.jupiter.api.Assertions.fail;
 /**
  * Contains all the tests related to the Event class.
  */
-class TaskTest {
+class EventTest {
 
     @Test
     void eventInformation() throws Exception {
-        assertEquals("[E] Team Meeting at Mar 21 2020 from 09:00 to 17:00 with priority 1",
-                new Event("Team Meeting", "2020-03-21", "09:00",
+        assertEquals("[E] Team Meeting at Mar 21 2021 from 09:00 to 17:00 with priority 1",
+                new Event("Team Meeting", "2021-03-21", "09:00",
                         "17:00", "1").getTaskInformation());
     }
 
     @Test
     void formattedDetails() throws Exception {
-        assertEquals("E#Team Meeting#2020-03-21#09:00#17:00#1\n",
-                new Event("Team Meeting", "2020-03-21", "09:00",
+        assertEquals("E#Team Meeting#2021-03-21#09:00#17:00#1" + System.lineSeparator(),
+                new Event("Team Meeting", "2021-03-21", "09:00",
                         "17:00", "1").getFormattedDetails());
     }
 
@@ -41,29 +40,31 @@ class TaskTest {
     @Test
     void createEvent_invalidStartTime_throwException() {
         try {
-            Event event = new Event("Team Meeting", "2020-03-21", "25:00",
+            Event event = new Event("Team Meeting", "2021-03-21", "25:00",
                     "17:00", "1");
             fail("Invalid start time not rejected");
         } catch (Exception e) {
-            assertEquals("Start time provided is invalid or in wrong format (Should be HH:MM)",e.getMessage());
+            assertEquals("Start time provided is invalid or in wrong format (Should be HH:MM) 24 Hr format",
+                    e.getMessage());
         }
     }
 
     @Test
     void createEvent_invalidEndTime_throwException() {
         try {
-            Event event = new Event("Team Meeting", "2020-03-21", "09:00",
+            Event event = new Event("Team Meeting", "2021-03-21", "09:00",
                     "10:70", "1");
             fail("Invalid end time not rejected");
         } catch (Exception e) {
-            assertEquals("End time provided is invalid or in wrong format (Should be HH:MM)",e.getMessage());
+            assertEquals("End time provided is invalid or in wrong format (Should be HH:MM) 24 Hr format",
+                    e.getMessage());
         }
     }
 
     @Test
     void createEvent_invalidPriority_throwException() {
         try {
-            Event event = new Event("Team Meeting", "2020-03-21", "09:00",
+            Event event = new Event("Team Meeting", "2021-03-21", "09:00",
                     "10:50", "High");
             fail("Invalid priority not rejected");
         } catch (Exception e) {
@@ -74,7 +75,7 @@ class TaskTest {
     @Test
     void createEvent_startTimeAfterEndTime_throwException() {
         try {
-            Event event = new Event("Team Meeting", "2020-03-21", "09:00",
+            Event event = new Event("Team Meeting", "2021-03-21", "09:00",
                     "08:50", "1");
             fail("Start time after end time not rejected");
         } catch (Exception e) {
@@ -96,23 +97,23 @@ class TaskTest {
     @Test
     void searchKeyword_emptyKeyword_throwException() throws Exception {
         try {
-            boolean hasKeyword = new Event("Team Meeting", "2020-03-21", "09:00",
+            boolean hasKeyword = new Event("Team Meeting", "2021-03-21", "09:00",
                     "17:00", "1").hasKeyword("");
             fail("Empty keyword not detected");
         } catch (Exception e) {
-            assertEquals("Keyword is empty", e.getMessage());
+            assertEquals("Keyword to be used for search is empty", e.getMessage());
         }
     }
 
     @Test
     void searchKeyword_containsKeyword() throws Exception {
-        assertEquals(true, new Event("Team Meeting", "2020-03-21", "09:00",
+        assertEquals(true, new Event("Team Meeting", "2021-03-21", "09:00",
                 "17:00", "1").hasKeyword("Meeting"));
     }
 
     @Test
     void searchKeyword_doesntContainsKeyword() throws Exception {
-        assertEquals(false, new Event("Team Meeting", "2020-03-21", "09:00",
+        assertEquals(false, new Event("Team Meeting", "2021-03-21", "09:00",
                 "17:00", "1").hasKeyword("Class"));
     }
 

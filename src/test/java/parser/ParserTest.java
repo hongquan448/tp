@@ -93,7 +93,7 @@ class ParserTest {
             command = parser.parseCommand("clear events");
             fail("Invalid clear command not identified");
         } catch (Exception exception) {
-            assertEquals("Wrong command clear events (Should be :clear )",
+            assertEquals("Wrong command to clear events (Should be :clear )",
                     exception.getMessage());
         }
     }

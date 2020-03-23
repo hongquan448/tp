@@ -5,6 +5,7 @@ import command.AddEventCommand;
 import command.ClearCommand;
 import command.Command;
 import command.CountdownCommand;
+import command.CreateScheduleCommand;
 import command.DeleteCommand;
 import command.EditCommand;
 import command.HelpCommand;
@@ -28,6 +29,7 @@ public class Parser {
     public static final String EDIT_COMMAND = "edit";
     public static final String EMPTY_COMMAND = "";
     public static final String HELP_COMMAND = "help";
+    public static final String CREATE_SCHEDULE_COMMAND = "schedule";
 
     /**
      * This method takes in the user input parses it and returns the command to be executed.
@@ -39,7 +41,7 @@ public class Parser {
 
         String[] commandSplit = fullCommand.split(" ",2);
         String commandType = commandSplit[0];
-        Command command;
+        Command command = null;
         boolean isOneWordCommand = commandSplit.length == 1 || commandSplit[1].isBlank();
         switch (commandType) {
         case ADD_DEADLINE_COMMAND:
@@ -71,6 +73,9 @@ public class Parser {
             break;
         case HELP_COMMAND:
             command = new HelpCommand(isOneWordCommand);
+            break;
+        case CREATE_SCHEDULE_COMMAND:
+            command = new CreateScheduleCommand(isOneWordCommand, commandSplit);
             break;
         case EMPTY_COMMAND:
             throw new Exception("Empty Line entered, Please enter a valid line");

@@ -1,7 +1,7 @@
 package resourceloader;
 
 import studyarea.Dictionary;
-import studyarea.IllegalStudyAreaException;
+import exception.IllegalStudyAreaException;
 import studyarea.StudyArea;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
-import static ui.Constants.FILE_PATH_DICTIONARY;
+
 import static ui.Constants.FILE_PATH_STUDYAREAS;
 import static ui.Constants.INCONSISTENT_DATA_STORAGE;
 import static ui.Constants.MISSING_STUDY_AREA_DATA;
@@ -73,18 +73,20 @@ public class StudyAreaLoader {
         return buffer;
     }
 
+
     /**
      * This method creates a new data file for locations.txt and dictionary.txt.
+     * @param filePath this is the path of the data file to be created.
      * @throws IOException if cannot create file.
      */
-    public static void createNewStudyAreaData() throws IOException {
-        Files.createFile(Paths.get(FILE_PATH_STUDYAREAS));
-        Files.createFile(Paths.get(FILE_PATH_DICTIONARY));
-        PrintWriter dataBuffer = new PrintWriter(new File(FILE_PATH_STUDYAREAS));
-        dataBuffer.println(BackUpData.BACKUP_LOCATIONS);
-        dataBuffer.close();
-        dataBuffer = new PrintWriter(new File(FILE_PATH_DICTIONARY));
-        dataBuffer.println(BackUpData.BACKUP_DICTIONARY);
+    public static void createNewStudyAreaData(String filePath) throws IOException {
+        Files.createFile(Paths.get(filePath));
+        PrintWriter dataBuffer = new PrintWriter(new File(filePath));
+        if (filePath.equals(FILE_PATH_STUDYAREAS)) {
+            dataBuffer.println(BackUpData.BACKUP_LOCATIONS);
+        } else {
+            dataBuffer.println(BackUpData.BACKUP_DICTIONARY);
+        }
         dataBuffer.close();
     }
 }

@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 import static java.lang.System.lineSeparator;
 import static ui.Constants.BYE_COMMAND;
 import static ui.Constants.DAB;
+import static ui.Constants.FLAGS;
 import static ui.Constants.GOODBYE_MESSAGE;
 import static ui.Constants.HELP_DESCRIPTION_1;
 import static ui.Constants.HELP_DESCRIPTION_10;
@@ -30,6 +31,7 @@ import static ui.Constants.HELP_DESCRIPTION_7;
 import static ui.Constants.HELP_DESCRIPTION_8;
 import static ui.Constants.HELP_DESCRIPTION_9;
 import static ui.Constants.LINE;
+import static ui.Constants.LOGO;
 import static ui.Constants.MAX_LINE_LENGTH;
 import static ui.Constants.SPACE;
 import static ui.Constants.START_MESSAGE;
@@ -134,36 +136,7 @@ public class Ui {
      * Display welcome message.
      */
     public void printWelcomeMessage() {
-
-        //@@author NizarMohd-reused
-        //Reused logo from http://patorjk.com/software/taag/#p=display&f=Graffiti&t=TypeSomething with minor
-        // modifications. The website above allows for generation of fonts in ascii format. Therefore, logo is
-        // generated from the service provided by the website.
-        String logo = "_______/\\\\\\\\\\_____________________________________________________/\\\\\\\\\\_____/\\\\\\__"
-                + "__________________________________________/\\\\\\____________\n"
-                + "______/\\\\\\///\\\\\\__________________________________________________\\/\\\\\\\\\\\\___\\/\\\\\\_"
-                + "_________________________________________/\\\\\\\\\\\\\\_________\n"
-                + "_____/\\\\\\/__\\///\\\\\\____________________/\\\\\\\\\\\\\\\\___________________\\/\\\\\\/\\\\\\_"
-                + "_\\/\\\\\\___/\\\\\\__________________________________/\\\\\\\\\\\\\\\\\\_______\n"
-                + "_____/\\\\\\______\\//\\\\\\___/\\\\/\\\\\\\\\\\\\\____/\\\\\\////\\\\\\___/\\\\\\\\\\\\\\\\\\___"
-                + "__\\/\\\\\\//\\\\\\_\\/\\\\\\__\\///_______/\\\\\\\\\\\\\\\\______/\\\\\\\\\\\\\\\\__"
-                + "_\\//\\\\\\\\\\\\\\_______\n"
-                + "_____\\/\\\\\\_______\\/\\\\\\__\\/\\\\\\/////\\\\\\__\\//\\\\\\\\\\\\\\\\\\__\\////////\\\\\\___"
-                + "_\\/\\\\\\\\//\\\\\\\\/\\\\\\___/\\\\\\____/\\\\\\//////_____/\\\\\\/////\\\\\\___\\//\\\\\\\\\\____"
-                + "___\n"
-                + "______\\//\\\\\\______/\\\\\\___\\/\\\\\\___\\///____\\///////\\\\\\____/\\\\\\\\\\\\\\\\\\\\__"
-                + "_\\/\\\\\\_\\//\\\\\\/\\\\\\__\\/\\\\\\___/\\\\\\___________/\\\\\\\\\\\\\\\\\\\\\\_____\\//\\\\\\__"
-                + "_____\n"
-                + "________\\///\\\\\\__/\\\\\\_____\\/\\\\\\___________/\\\\_____\\\\\\___/\\\\\\/////\\\\\\__"
-                + "_\\/\\\\\\__\\//\\\\\\\\\\\\__\\/\\\\\\__\\//\\\\\\_________\\//\\\\///////_______\\///_______\n"
-                + "____________\\///\\\\\\\\\\/______\\/\\\\\\__________\\//\\\\\\\\\\\\\\\\__"
-                + "_\\//\\\\\\\\\\\\\\\\/\\\\"
-                + "_\\/\\\\\\___\\//\\\\\\\\\\__\\/\\\\\\___\\///\\\\\\\\\\\\\\\\___\\//\\\\\\\\\\\\\\\\\\\\_____"
-                + "_/\\\\\\_____\n"
-                + "______________\\/////________\\///____________\\////////_____\\////////\\//___\\///_____\\/////__"
-                +  "_\\///______\\////////_____\\//////////______\\///_____";
-        //@@author
-        this.out.println("Hello from\n" + logo);
+        this.out.println("Hello from" + System.lineSeparator() + LOGO);
         this.out.println("What is your name?");
         printLine();
         String name = this.in.nextLine();
@@ -174,10 +147,24 @@ public class Ui {
     }
 
     /**
+     * This method prints the list of supported flags for the User.
+     */
+    public void printStudyAreaHelp() {
+        this.out.println(FLAGS);
+    }
+
+    /**
      * Prints an empty line.
      */
     public void printEmptyLine() {
         System.out.println();
+    }
+
+    /**
+     * Prints the closing message.
+     */
+    public void printByeMessage() {
+        printMessage(GOODBYE_MESSAGE + DAB);
     }
 
     /**

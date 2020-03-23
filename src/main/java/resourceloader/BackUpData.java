@@ -18,7 +18,7 @@ class BackUpData {
 
     static final String BACKUP_LOCATIONS = "Opposite Town Green (Outside Starbucks)~2 College Avenue West Education "
                      + "Resource Centre, Ground Level~Utown~true~false~4\n"
-                     + "Starbucks~2 College Avenue West Education Resource Centre, Ground Level~Utown~true~false~5\n"
+                     + "Starbucks~2 College Avenue West Education Resource Centre, Ground Level~Utown~true~true~5\n"
                      + "MacCommons~2 College Avenue West Education Resource Centre, Level 1~Utown~true~true~5\n"
                      + "PC Commons~2 College Avenue West Education Resource Centre, Level 1~Utown~true~true~5\n"
                      + "Ian and Peony Ferguson Study~2 College Ave West Education Resource Centre, Level 3~Utown~"

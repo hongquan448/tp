@@ -1,14 +1,21 @@
 package command;
 
+import exception.command.EventCreationFormatNotFollowedException;
 import exception.command.EventDetailsNotProvidedException;
 import task.Event;
 import task.TaskList;
 import ui.Ui;
+import java.time.LocalDate;
 
 /**
- * This command is used to add new events to the Tasklist.
+ * This command is used to add new events to the TaskList.
  */
 public class AddEventCommand extends Command {
+
+    public static final String START_TIME_AFTER_END_TIME_ERROR_MESSAGE = "Start time after end time exception "
+            + "not thrown";
+    public static final String DATE_BEFORE_CURRENT_DATE_ERROR_MESSAGE = "Date past current day exception not thrown";
+    public static final String SLASH_SYMBOL = "/";
 
     /** The new event to be added. */
     Event newEvent;
@@ -25,14 +32,18 @@ public class AddEventCommand extends Command {
         if (isOneWordCommand) {
             throw new EventDetailsNotProvidedException();
         }
-
-        String[] details = eventDetails[1].split("/");
+        String[] details = eventDetails[1].split(SLASH_SYMBOL);
+        if (details.length != 5) {
+            throw new EventCreationFormatNotFollowedException();
+        }
         String description = details[0];
         String date = details[1].substring(2);
         String startTime = details[2].substring(2);
         String endTime = details[3].substring(2);
         String priority = details[4].substring(2);
         newEvent =  new Event(description,date,startTime,endTime,priority);
+        assert !newEvent.getStartTime().isAfter(newEvent.getEndTime()) : START_TIME_AFTER_END_TIME_ERROR_MESSAGE;
+        assert !newEvent.getDate().isBefore(LocalDate.now()) : DATE_BEFORE_CURRENT_DATE_ERROR_MESSAGE;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package command;
 
-import studyarea.IllegalStudyAreaException;
+import exception.IllegalStudyAreaException;
 import studyarea.StudyArea;
 import studyarea.StudyAreaList;
 import ui.Ui;
@@ -10,7 +10,6 @@ import static ui.Constants.BYE_COMMAND;
 import static ui.Constants.EMPTY_LIST;
 import static ui.Constants.EMPTY_LOCATION;
 import static ui.Constants.END_MESSAGE;
-import static ui.Constants.FLAGS;
 import static ui.Constants.HELP_COMMAND;
 import static ui.Constants.PROMPT_USER;
 import static ui.Constants.START_STUDY_AREA_SEARCH;
@@ -42,13 +41,13 @@ public class StudyAreaCommand {
     /**
      * Filters command based on User Input.
      * @param command This is the command entered by User.
-     * @param studyAreaList This is the list of all StudyAreas in location.txt.
      * @param ui This allows for StudyAreaCommand to interact with Users.
+     * @param studyAreaList This contains all existing study areas.
      * @return boolean status. False if User enters "end" , else will always return true;
      * @throws IllegalStudyAreaException if User enters invalid commands.
      */
 
-    public static boolean filterCommand(String command, StudyAreaList studyAreaList, Ui ui) throws
+    public static boolean filterCommand(String command,StudyAreaList studyAreaList, Ui ui) throws
             IllegalStudyAreaException {
 
         command = command.trim();
@@ -60,7 +59,7 @@ public class StudyAreaCommand {
                 ui.printMessage(END_MESSAGE);
                 return false;
             case HELP_COMMAND:
-                ui.printMessage(FLAGS);
+                ui.printStudyAreaHelp();
                 break;
             default:
                 try {
@@ -78,8 +77,8 @@ public class StudyAreaCommand {
     
     /**
      * Executes the StudyArea search feature.
+     * @param studyAreaList This contains the list of all existing study area.
      * @param ui This allows for StudyAreaCommand to interact with Users.
-     * @param studyAreaList studyAreaList object that holds information on studyAreas available.
      */
     public static void runCommands(StudyAreaList studyAreaList, Ui ui)  {
         ui.printLine();
@@ -90,7 +89,7 @@ public class StudyAreaCommand {
             String command = ui.getUserIn().toLowerCase();
             ui.printLine();
             try {
-                status = filterCommand(command, studyAreaList, ui);
+                status = filterCommand(command, studyAreaList,  ui);
             } catch (IllegalStudyAreaException e) {
                 ui.printMessage(e.getMessage());
             }

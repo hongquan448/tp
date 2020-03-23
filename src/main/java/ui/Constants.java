@@ -30,8 +30,10 @@ public class Constants {
             + "Enter \"help\" for a list of supported flags. Flags should only come after location, if a criteria for"
             + " location is entered. When you are done with the search, enter \"bye\".";
     public static final String PROMPT_USER = "Please enter the location for your desired study area.";
-    public static final String FLAGS = "Here is a list of supported flags!\n\t -p for study areas with ports\n\t"
-            + " -i for study areas that are indoors\n\t -i for study areas that are outdoors\n\t "
+    public static final String FLAGS = "\t Here is a list of supported flags!" + System.lineSeparator()
+            + "\t -p for study"
+            + " areas with ports" + System.lineSeparator() + "\t -i for study areas that are indoors"
+            + System.lineSeparator() + "\t -o for study areas that are outdoors" + System.lineSeparator() + "\t "
             + "-s {size} for maximum number of pax";
     public static final String AVAILABLE_STUDY_AREAS = "Here are the available study areas!";
     public static final String EMPTY_LIST = "Oops! Based on your criteria we were not able to find a compatible study"
@@ -43,10 +45,10 @@ public class Constants {
     public static final String NO_SIZE_INDICATED = "Max Size is not indicated. Please indicate accordingly!";
     public static final String END_MESSAGE = "Thank you for using our study area search service!";
     public static final String START_MESSAGE = "Welcome to OrgaNice! To start, enter \"task\" to start"
-            + " your event list! If you are in the mood to mug and you"
+            + " your task list! If you are in the mood to mug and you"
             + " want to start your study area list, enter \"study\" !If"
             + " you want to exit, enter \"bye\" !";
-    public static final String WRONG_INPUT = "Wrong input! Please enter either \"event\" or \"study\" only!";
+    public static final String WRONG_INPUT = "Wrong input! Please enter either \"task\" or \"study\" only!";
     public static final String TASK_COMMAND = "task";
     public static final String STUDY_COMMAND = "study";
     public static final String GOODBYE_MESSAGE = "  Goodbye! Hope to see you again!";
@@ -55,15 +57,14 @@ public class Constants {
     public static final String EMPTY_LOCATION = "Location entered is empty! Please type a location to search for "
             + "StudyAreas!";
     public static final String NON_POSITIVE_INTEGER = "Integer entered cannot be zero or negative!";
-    public static final String HELP_DESCRIPTION_20 = TAB + "*There are 4 levels of priority, with 1 being the most "
-            + "urgent, and 4 being the least urgent";
-    public static final String HELP_DESCRIPTION_19 = TAB + "*All timing should follow 24 hour clock";
-    public static final String HELP_DESCRIPTION_18 = TAB + "*All dates should follow YYYY-MM-DD format";
-    public static final String HELP_DESCRIPTION_17 = TAB + "Notes:";
-    public static final String HELP_DESCRIPTION_16 = TAB + "bye --------------------------------------- Terminate task"
+    public static final String HELP_DESCRIPTION_20 = TAB + "*All timing should follow 24 hour clock";
+    public static final String HELP_DESCRIPTION_19 = TAB + "*All dates should follow YYYY-MM-DD format";
+    public static final String HELP_DESCRIPTION_18 = TAB + "Notes:";
+    public static final String HELP_DESCRIPTION_17 = TAB + "bye --------------------------------------- Terminate task"
             + " interface";
-    public static final String HELP_DESCRIPTION_15 = TAB + "help -------------------------------------- View List Of "
+    public static final String HELP_DESCRIPTION_16 = TAB + "help -------------------------------------- View List Of "
             + "Commands Supported";
+    public static final String HELP_DESCRIPTION_15 = TAB + "schedule <number of task to be scheduled> - Schedule tasks";
     public static final String HELP_DESCRIPTION_14 = TAB + "edit <index number of task> --------------- Edit the task";
     public static final String HELP_DESCRIPTION_13 = TAB + "delete <index number of task> ------------- Delete the "
             + "task";
@@ -91,31 +92,161 @@ public class Constants {
     //@@author NizarMohd-reused
     //Reused from https://www.netclipart.com/isee/iRwmhJb_bt21-rj-transparent-background/ and https://asciiart.club/
     //Image for public static final String DAB is obtained from the first link and then generated in second link.
-    public static final String DAB = "\t ``````````````````````````````````````````````````````````\n"
-            + "\t ````````````````````````````````:v(v'`````````````````````\n"
-            + "\t ```````````````````````````,)4|ex` `L}````````````````````\n"
-            + "\t `````````````````````````!s\"'h `M:   ^z_;)T```````````````\n"
-            + "\t `````````````````````````Z   u|}Z:        \"}``````````````\n"
-            + "\t ``````````````````````:=?)                'B?L'```````````\n"
-            + "\t `````````````````````'Z                    ;Yp\"```````````\n"
-            + "\t `````````````````````.e                      ?_```````````\n"
-            + "\t ```````````````````'QDGH                    .5````````````\n"
-            + "\t ````````````````````I#g'         '_`        ||````````````\n"
-            + "\t ```````````:mX_``````YhL`      `'q!`   ?     h````````````\n"
-            + "\t ```````````'Qbs)|L=_V\" 'Y}     ^'q@&b=c=_`  ,Z````````````\n"
-            + "\t ````````````q>     'T,   ,o\"    ;\"@c.   .sVx~`````````````\n"
-            + "\t ````````````c!             \"bh` `,p       z:``````````````\n"
-            + "\t `````````````q.              ngDQmh8s     X'``````````````\n"
-            + "\t ``````````````LY\"             :n}>``b;   _V```````````````\n"
-            + "\t ````````````````q?,                ?;   \"V````````````````\n"
-            + "\t ``````````````KvR                  '  )x_`````````````````\n"
-            + "\t ``````````````zjL                  GLY\"```````````````````\n"
-            + "\t ```````````````M                 .I)``````````````````````\n"
-            + "\t ```````````````Lz                `D:``````````````````````\n"
-            + "\t ``````````````vu`    (I)_;\"\".      P.`````````````````````\n"
-            + "\t ``````````````p     :X.':^,\"=n    \"q``````````````````````\n"
-            + "\t `````````````)0X?^:)I````````m'   :j``````````````````````\n"
-            + "\t `````````````.IGD8k'`````````<&G55M```````````````````````\n"
+    public static final String DAB = "\t ``````````````````````````````````````````````````````````"
+            + System.lineSeparator()
+            + "\t ````````````````````````````````:v(v'`````````````````````" + System.lineSeparator()
+            + "\t ```````````````````````````,)4|ex` `L}````````````````````" + System.lineSeparator()
+            + "\t `````````````````````````!s\"'h `M:   ^z_;)T```````````````" + System.lineSeparator()
+            + "\t `````````````````````````Z   u|}Z:        \"}``````````````" + System.lineSeparator()
+            + "\t ``````````````````````:=?)                'B?L'```````````" + System.lineSeparator()
+            + "\t `````````````````````'Z                    ;Yp\"```````````" + System.lineSeparator()
+            + "\t `````````````````````.e                      ?_```````````" + System.lineSeparator()
+            + "\t ```````````````````'QDGH                    .5````````````" + System.lineSeparator()
+            + "\t ````````````````````I#g'         '_`        ||````````````" + System.lineSeparator()
+            + "\t ```````````:mX_``````YhL`      `'q!`   ?     h````````````" + System.lineSeparator()
+            + "\t ```````````'Qbs)|L=_V\" 'Y}     ^'q@&b=c=_`  ,Z````````````" + System.lineSeparator()
+            + "\t ````````````q>     'T,   ,o\"    ;\"@c.   .sVx~`````````````" + System.lineSeparator()
+            + "\t ````````````c!             \"bh` `,p       z:``````````````" + System.lineSeparator()
+            + "\t `````````````q.              ngDQmh8s     X'``````````````" + System.lineSeparator()
+            + "\t ``````````````LY\"             :n}>``b;   _V```````````````" + System.lineSeparator()
+            + "\t ````````````````q?,                ?;   \"V````````````````" + System.lineSeparator()
+            + "\t ``````````````KvR                  '  )x_`````````````````" + System.lineSeparator()
+            + "\t ``````````````zjL                  GLY\"```````````````````" + System.lineSeparator()
+            + "\t ```````````````M                 .I)``````````````````````" + System.lineSeparator()
+            + "\t ```````````````Lz                `D:``````````````````````" + System.lineSeparator()
+            + "\t ``````````````vu`    (I)_;\"\".      P.`````````````````````" + System.lineSeparator()
+            + "\t ``````````````p     :X.':^,\"=n    \"q``````````````````````" + System.lineSeparator()
+            + "\t `````````````)0X?^:)I````````m'   :j``````````````````````" + System.lineSeparator()
+            + "\t `````````````.IGD8k'`````````<&G55M```````````````````````" + System.lineSeparator()
             + "\t ``````````````````````````````````````````````````````````";
-            //@@author
+    //@@author
+
+    //@@author NizarMohd-reused
+    //Reused logo from http://patorjk.com/software/taag/#p=display&f=Graffiti&t=TypeSomething with minor
+    // modifications. The website above allows for generation of fonts in ascii format. Therefore, logo is
+    // generated from the service provided by the website.
+    public static final String LOGO = "_______/\\\\\\\\\\___________________________________________________"
+        + "__/\\\\\\\\\\_____/\\\\\\__"
+        + "__________________________________________/\\\\\\____________" +  System.lineSeparator()
+        + "______/\\\\\\///\\\\\\__________________________________________________\\/\\\\\\\\\\\\___\\/\\\\\\_"
+        + "_________________________________________/\\\\\\\\\\\\\\_________" +  System.lineSeparator()
+        + "_____/\\\\\\/__\\///\\\\\\____________________/\\\\\\\\\\\\\\\\___________________\\/\\\\\\/\\\\\\_"
+        + "_\\/\\\\\\___/\\\\\\__________________________________/\\\\\\\\\\\\\\\\\\_______"
+        +  System.lineSeparator()
+        + "_____/\\\\\\______\\//\\\\\\___/\\\\/\\\\\\\\\\\\\\____/\\\\\\////\\\\\\___/\\\\\\\\\\\\\\\\\\___"
+        + "__\\/\\\\\\//\\\\\\_\\/\\\\\\__\\///_______/\\\\\\\\\\\\\\\\______/\\\\\\\\\\\\\\\\__"
+        + "_\\//\\\\\\\\\\\\\\_______" +  System.lineSeparator()
+        + "_____\\/\\\\\\_______\\/\\\\\\__\\/\\\\\\/////\\\\\\__\\//\\\\\\\\\\\\\\\\\\__\\////////\\\\\\___"
+        + "_\\/\\\\\\\\//\\\\\\\\/\\\\\\___/\\\\\\____/\\\\\\//////_____/\\\\\\/////\\\\\\___\\//\\\\\\\\\\____"
+        + "___" +  System.lineSeparator()
+        + "______\\//\\\\\\______/\\\\\\___\\/\\\\\\___\\///____\\///////\\\\\\____/\\\\\\\\\\\\\\\\\\\\__"
+        + "_\\/\\\\\\_\\//\\\\\\/\\\\\\__\\/\\\\\\___/\\\\\\___________/\\\\\\\\\\\\\\\\\\\\\\_____\\//\\\\\\__"
+        + "_____" +  System.lineSeparator()
+        + "________\\///\\\\\\__/\\\\\\_____\\/\\\\\\___________/\\\\_____\\\\\\___/\\\\\\/////\\\\\\__"
+        + "_\\/\\\\\\__\\//\\\\\\\\\\\\__\\/\\\\\\__\\//\\\\\\_________\\//\\\\///////_______\\///_______"
+        +  System.lineSeparator()
+        + "____________\\///\\\\\\\\\\/______\\/\\\\\\__________\\//\\\\\\\\\\\\\\\\__"
+        + "_\\//\\\\\\\\\\\\\\\\/\\\\"
+        + "_\\/\\\\\\___\\//\\\\\\\\\\__\\/\\\\\\___\\///\\\\\\\\\\\\\\\\___\\//\\\\\\\\\\\\\\\\\\\\_____"
+        + "_/\\\\\\_____" +  System.lineSeparator()
+        + "______________\\/////________\\///____________\\////////_____\\////////\\//___\\///_____\\/////__"
+        +  "_\\///______\\////////_____\\//////////______\\///_____";
+    //@@author
+
+    public static final String NON_POSITIVE_INTEGER_LOG = "User entered a non positive integer";
+    public static final String NON_INTEGER_LOG = "User entered an invalid number for integer input";
+
+    public static final String DUPLICATE_FLAGS_LOG = "Duplicate flags entered by user";
+    public static final String IDENTIFIER_MISSING_LOG = "Identifier not entered with flag by user";
+    public static final String NO_SIZE_INDICATED_LOG = "no string exist after \"-s\"";
+    public static final String WRONG_FLAG_LOG = "Wrong flag used by user while searching for study areas";
+    public static final String FLAG_MISPLACED_LOG = "Flag is placed in the wrong position in the user input";
+    public static final String NEW_TASK_ADDED_MESSAGE = "A new task with the following information has been added.";
+    public static final String TASK_LIST_AS_FOLLOWS = "Here is the list of tasks added so far:";
+    public static final String CLOSING_BRACKET = ") ";
+    public static final String LIST_EMPTY_MESSAGE = "The list is empty.";
+    public static final String TASK_AT_INDEX_DELETED_MESSAGE = "The task at the mentioned index has been deleted";
+    public static final String INDEX_TO_BE_DELETED_OUT_OF_BOUNDS_LOG = "Index specified to be deleted is out of bounds";
+    public static final String RE_ENTER_VALID_INDEX_TO_DELETE_MESSAGE = "Invalid index entered. Please enter a valid"
+            + " index to be deleted";
+    public static final String TASK_AT_INDEX_EDITED_MESSAGE = "The task at the mentioned index has been "
+            + "edited successfully";
+    public static final String RE_ENTER_VALID_INDEX_TO_EDIT_MESSAGE = "Invalid index entered. Please enter a"
+            + " valid index to be edited";
+    public static final String INVALID_TASK_TYPE_LOG = "Task type of the task to be edited not recognized";
+    public static final String ERROR_ENCOUNTERED_DURING_EXECUTION_MESSAGE = "Error encountered during execution";
+    public static final String TASK_LIST_CLEARED_MESSAGE = "The list of tasks is cleared.";
+    public static final String LIST_SORTED_BY_PRIORITY_MESSAGE = "Here is the list of tasks added so far displayed "
+            + "in decreasing order of priority:";
+    public static final String LIST_SORTED_ON_DAYS_LEFT_MESSAGE = "Here is the list of tasks with sorted based"
+            + " on the number of days left:";
+    public static final String ARROW_SYMBOL = " ---> ";
+    public static final String DAYS_LEFT = " day(s) left";
+    public static final String FROM = " is scheduled from ";
+    public static final String TO = " to ";
+    public static final String WRONG_FORMAT_MESSAGE = "Please follow the format specified. Renter details:";
+    public static final String ENTER_DETAILS = "Enter details for task ";
+    public static final String COLON = ":";
+    public static final String FORWARD_SLASH = "/";
+    public static final String SCHEDULABLE_TASK_FORMAT = "<task name> /f <Time to finish task in days>"
+            + " /d <Number of days left from current day to finish it>";
+    public static final String ENTER_TASKS_IN_THE_FOLLOWING_FORMAT = "Enter tasks in the following format:";
+    public static final String DETAILS_CAPTURED_SUCCESSFULLY = "Details captured successfully.";
+    public static final int EDIT_DESCRIPTION = 1;
+    public static final int EDIT_DATE = 2;
+    public static final int EDIT_START_TIME = 3;
+    public static final int EDIT_END_TIME = 4;
+    public static final int EDIT_PRIORITY = 5;
+    public static final String ERROR_MESSAGE = "Error encountered during execution";
+    public static final String DATE_PATTERN = "MMM d yyyy";
+    public static final String EVENT_SYMBOL = "[E] ";
+    public static final String AT = " at ";
+    public static final String WITH_PRIORITY = " with priority ";
+    public static final String EMPTY_STRING = "";
+    public static final String DELIMITER = "#";
+    public static final String NEW_LINE_CHARACTER = System.lineSeparator();
+    public static final String EVENT_IDENTIFIER = "E";
+    public static final String ENTER_NEW_PRIORITY_MESSAGE = "Enter new priority:";
+    public static final String ENTER_NEW_END_TIME_MESSAGE = "Enter new End Time:";
+    public static final String ENTER_NEW_START_TIME_MESSAGE = "Enter new Start Time:";
+    public static final String ENTER_NEW_DATE_MESSAGE = "Enter new Date:";
+    public static final String ENTER_NEW_DESCRIPTION_MESSAGE = "Enter new description:";
+    public static final String ENTER_VALID_NUMBER_FROM_LIST_MESSAGE = "Please enter a valid number from the list";
+    public static final String UPDATED_DETAILS = "Updated Details:";
+    public static final String EVENT_DETAILS_AS_FOLLOWS_MESSAGE = "The event details are as follows:";
+    public static final String ASK_FOR_OPTION_MESSAGE = "Which field of the event to edit?"
+            + " (Enter Corresponding Number)";
+    public static final String OPTION_TO_EDIT_DESCRIPTION = "1. Description";
+    public static final String OPTION_TO_EDIT_DATE = "2. Date";
+    public static final String OPTION_TO_EDIT_START_TIME = "3. Start Time";
+    public static final String OPTION_TO_EDIT_END_TIME = "4. End Time";
+    public static final String OPTION_TO_EDIT_PRIORITY = "5. Priority";
+    public static final String START_TIME_AFTER_END_TIME = "Event start time after end time exception thrown";
+    public static final String PRIORITY_NOT_INTEGER = "Task priority not integer exception thrown";
+    public static final String INVALID_END_TIME = "Invalid end time exception thrown";
+    public static final String INVALID_START_TIME = "Invalid start time exception thrown";
+    public static final String INVALID_DATE = "Invalid date exception thrown";
+    public static final String DATE_AFTER_CURRENT_DATE = "Date after current date exception thrown";
+    public static final String SEARCH_KEYWORD_EMPTY = "Search keyword empty exception thrown";
+    public static final String WRONG_OPTION = "Wrong option entered not handled by getFieldToBeEdited";
+    public static final String INVALID_PRIORITY_VALUE = "Invalid priority value entered by user";
+    public static final String INVALID_END_TIME_ENTERED = "Invalid end time entered by the user";
+    public static final String INVALID_START_TIME_ENTERED = "Invalid start time entered by user";
+    public static final String INVALID_DATE_ENTERED = "Invalid date entered by user";
+    public static final String INVALID_OPTION_ENTERED = "Invalid option entered by user";
+    public static final String FROM_PLAIN = " from ";
+    public static final String FILE_PATH_EVENTS = "library" + File.separator + "taskList.txt";
+    public static final String FILE_PATH_STUDY_AREAS = "library" + File.separator + "locations.txt";
+    public static final String EXCEPTION_ENCOUNTERED_MESSAGE = "Exception encountered when Duke was constructed";
+    public static final String DUKE_LOGGER_LOG = "dukeLogger.log";
+    public static final String FILE_LOGGER_NOT_WORKING_MESSAGE = "File Logger not working";
+    public static final String APPLICATION_STARTED_EXECUTION = "Application started Execution";
+    public static final String APPLICATION_GOING_TO_EXIT = "Application is going to exit";
+    public static final String TASK_MODE = "Application transitioning to task mode";
+    public static final String STUDY_AREA_MODE = "Application transitioning to study area mode";
+    public static final String WRONG_COMMAND = "Wrong command entered by user";
+    public static final String APPLICATION_CLOSED_SUCCESSFULLY = "Application closed successfully";
+    public static final int TASK_MODE_SELECTED = 1;
+    public static final int STUDY_AREA_MODE_SELECTED = 2;
+    public static final int EXIT = -1;
 }

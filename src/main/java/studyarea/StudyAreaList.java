@@ -1,27 +1,38 @@
 package studyarea;
 
+import exception.IllegalStudyAreaException;
+
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static ui.Constants.DUPLICATE_FLAGS;
+import static ui.Constants.DUPLICATE_FLAGS_LOG;
 import static ui.Constants.FLAG;
+import static ui.Constants.FLAG_MISPLACED_LOG;
+import static ui.Constants.IDENTIFIER_MISSING_LOG;
 import static ui.Constants.INDOOR_FLAG;
 import static ui.Constants.MULTIPLE_WHITE_SPACES;
+import static ui.Constants.NON_INTEGER_LOG;
 import static ui.Constants.NON_POSITIVE_INTEGER;
+import static ui.Constants.NON_POSITIVE_INTEGER_LOG;
 import static ui.Constants.NOT_INTEGER;
 import static ui.Constants.NO_SIZE_INDICATED;
+import static ui.Constants.NO_SIZE_INDICATED_LOG;
 import static ui.Constants.ONLY_FLAG;
 import static ui.Constants.OUTDOOR_FLAG;
 import static ui.Constants.PORTS_FLAG;
 import static ui.Constants.SIZE_FLAG;
 import static ui.Constants.SPACE;
 import static ui.Constants.WRONG_FLAG_ARGUMENT_POSITION;
+import static ui.Constants.WRONG_FLAG_LOG;
 import static ui.Constants.WRONG_FLAG_USAGE;
 
 /**
  * This is the class that stores and manages all of the Study Areas in location.txt
  */
-
 public class StudyAreaList {
     private ArrayList<StudyArea> studyAreaList;
+    private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     // Assigns studyAreaList into object's studyAreaList.
     public StudyAreaList(ArrayList<StudyArea> studyAreaList) {
@@ -40,18 +51,21 @@ public class StudyAreaList {
 
     /**
      * This method checks for duplicate flags.
+     *
      * @param flag this is the array of flags in the system.
      * @param index this is the index referring to the specific flag to check for duplicate.
      * @throws IllegalStudyAreaException if flag is not null, ie: if flag has already been mentioned.
      */
     public static void checkDuplicate(String[] flag, int index) throws IllegalStudyAreaException {
         if (flag[index] != null) {
+            LOGGER.log(Level.INFO, DUPLICATE_FLAGS_LOG);
             throw new IllegalStudyAreaException(DUPLICATE_FLAGS);
         }
     }
 
     /**
      * This method check if command entered is only flags.
+     *
      * @param commands This is the string of commands entered by User.
      * @param index This is the index in which the method is check if only flag exist.
      * @throws IllegalStudyAreaException if only flag is entered by user.
@@ -59,12 +73,14 @@ public class StudyAreaList {
 
     public static void checkOnlyFlag(String[] commands, int index) throws IllegalStudyAreaException {
         if (commands[index].length() == 1) {
+            LOGGER.log(Level.INFO, IDENTIFIER_MISSING_LOG);
             throw new IllegalStudyAreaException(ONLY_FLAG);
         }
     }
 
     /**
      * This method checks if the command after the size flag is a valid integer.
+     *
      * @param commands this is the array of commands entered.
      * @param index this is the index where the size flag is.
      * @throws IllegalStudyAreaException if command entered is not a valid integer.
@@ -74,11 +90,14 @@ public class StudyAreaList {
         try {                                     // try block is to test if command is integer
             int size = Integer.parseInt(commands[index + 1]);
             if (size <= 0) {                     // check if integer is positive, else throw exception.
+                LOGGER.log(Level.INFO, NON_POSITIVE_INTEGER_LOG);
                 throw new IllegalStudyAreaException(NON_POSITIVE_INTEGER);
             }
         } catch (NumberFormatException e) {       // catch if command is not integer then throw exception
+            LOGGER.log(Level.INFO, NON_INTEGER_LOG);
             throw new IllegalStudyAreaException(NOT_INTEGER);
         } catch (ArrayIndexOutOfBoundsException e) {   // catch if no string exist after "-s" and throw exception
+            LOGGER.log(Level.INFO, NO_SIZE_INDICATED_LOG);
             throw new IllegalStudyAreaException(NO_SIZE_INDICATED);
         }
 
@@ -110,10 +129,12 @@ public class StudyAreaList {
                 checkDuplicate(flags, 3);
                 break;
             default:
+                LOGGER.log(Level.INFO, WRONG_FLAG_LOG);
                 throw new IllegalStudyAreaException(WRONG_FLAG_USAGE);
             }
         } else {                                         // if no instances of "-" or "-s"
             if (!isNotFlag) {                            // and if there exist previous instances of "-" (i.e: -p EA)
+                LOGGER.log(Level.INFO, FLAG_MISPLACED_LOG);
                 throw new IllegalStudyAreaException(WRONG_FLAG_ARGUMENT_POSITION);  // throw exception
             }
         }
@@ -131,7 +152,7 @@ public class StudyAreaList {
      *          index 4: search key entered by User<br>
      * @throws IllegalStudyAreaException when arguments for flags are invalid.
      */
-    public String[] getFlagsInfo(String[] commands) throws IllegalStudyAreaException {
+    public static String[] getFlagsInfo(String[] commands) throws IllegalStudyAreaException {
 
         String[] flags = new String[5];
         StringBuilder name = new StringBuilder();
@@ -157,6 +178,7 @@ public class StudyAreaList {
                     flags[3] = OUTDOOR_FLAG;
                     break;
                 default:
+                    LOGGER.log(Level.INFO, WRONG_FLAG_LOG);
                     throw new IllegalStudyAreaException(WRONG_FLAG_USAGE);
                 }
             } else {                                              // if no previous instances of "-"
@@ -173,6 +195,7 @@ public class StudyAreaList {
 
     /**
      * Checks if search key is found in Study Area's Name and Faculty attributes.
+     *
      * @param name This is the Study Area's Name Attribute.
      * @param address This is the Study Area's Address Attribute.
      * @param faculty This is the Study Area's Faculty Attribute.
@@ -191,6 +214,45 @@ public class StudyAreaList {
     }
 
     /**
+     * This method checks if study area is available based on the current flag.
+     * @param flag This is the current flag.
+     * @param isAvail This is the current incremental availability status of the StudyArea based on previous flags.
+     * @param index This is the index the flag is at in the flags array.
+     * @param studyArea This is the current StudyArea that is inspected by the method.
+     * @param flags This is the flags array that has been entered by the User.
+     * @return The method returns a boolean value, true if the study area meets the criterion stated by the current
+     *              flag and false if otherwise.
+     */
+
+    public static boolean isAvailStudyArea(String flag, boolean isAvail, int index, StudyArea studyArea,
+                                            String[] flags) {
+        boolean carryOn = flag != null && isAvail && index != 1; // carryOn indicates if current StudyArea iteration
+        // should continue.
+        if (carryOn) {
+            switch (flag) {
+            case PORTS_FLAG:
+                isAvail = studyArea.hasPort();
+                break;
+            case INDOOR_FLAG:
+                isAvail = studyArea.isIndoor();
+                break;
+            case OUTDOOR_FLAG:
+                isAvail = !studyArea.isIndoor();
+                break;
+            case SIZE_FLAG:  // allows user to find by capacity <= MaxPax
+                isAvail = Integer.parseInt(flags[1]) <= studyArea.getMaxPax();
+                break;
+            default:      // toLowerCase() so casing does not affect matching
+                isAvail = containsKey(studyArea.getName().toLowerCase(),
+                        studyArea.getAddress().toLowerCase(),
+                        studyArea.getFaculty().toLowerCase(), flags[4].toLowerCase());
+                break;
+            }
+        }
+        return isAvail;
+    }
+
+    /**
      * Finds a list of StudyAreas based on User requirements.
      *
      * @param userIn This is the requirement entered by User
@@ -202,30 +264,11 @@ public class StudyAreaList {
         String[] flags = getFlagsInfo(temp);
         ArrayList<StudyArea> availStudyAreas = new ArrayList<>();
         for (StudyArea studyArea : this.studyAreaList) {
-            boolean isAvail = true;
             int index = 0;
+            boolean isAvail = true;
             for (String flag : flags) {
-                if (flag != null && isAvail && index != 1) {
-                    switch (flag) {
-                    case PORTS_FLAG:
-                        isAvail = studyArea.hasPort();
-                        break;
-                    case INDOOR_FLAG:
-                        isAvail = studyArea.isIndoor();
-                        break;
-                    case OUTDOOR_FLAG:
-                        isAvail = !studyArea.isIndoor();
-                        break;
-                    case SIZE_FLAG:  // allows user to find by capacity <= MaxPax
-                        isAvail = Integer.parseInt(flags[1]) <= studyArea.getMaxPax();
-                        break;
-                    default:      // toLowerCase() so casing does not affect matching
-                        isAvail = containsKey(studyArea.getName().toLowerCase(), studyArea.getAddress().toLowerCase(),
-                                studyArea.getFaculty().toLowerCase(), flags[4].toLowerCase());
-                        break;
-                    }
-                    index++;
-                }
+                isAvail = isAvailStudyArea(flag, isAvail, index, studyArea, flags);
+                index++;
             }
             if (isAvail) {
                 availStudyAreas.add(studyArea);

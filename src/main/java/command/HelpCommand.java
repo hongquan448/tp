@@ -1,5 +1,6 @@
 package command;
 
+import exception.command.InvalidHelpCommandException;
 import task.TaskList;
 import ui.Ui;
 
@@ -17,7 +18,7 @@ public class HelpCommand extends Command {
      */
     public HelpCommand(boolean isOneWordCommand) throws Exception {
         if (!isOneWordCommand) {
-            throw new Exception("Wrong command used to view command list (Should be :help )");
+            throw new InvalidHelpCommandException();
         }
     }
 

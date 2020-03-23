@@ -1,10 +1,14 @@
 package task;
 
+import ui.Constants;
+import ui.Ui;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import ui.Ui;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Handles all functions related to the list of events.
@@ -16,6 +20,8 @@ public class TaskList {
      * Stores the task's information.
      */
     public ArrayList<Task> tasks;
+
+    private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     /**
      * Constructor for the TaskList class.
@@ -51,7 +57,7 @@ public class TaskList {
     public void addTask(Task newTask, Ui ui) {
         tasks.add(newTask);
         ui.printLine();
-        ui.printMessage("A new event with the following information has been added.");
+        ui.printMessage(Constants.NEW_TASK_ADDED_MESSAGE);
         ui.printMessage(newTask.getTaskInformation());
         ui.printLine();
     }
@@ -64,14 +70,14 @@ public class TaskList {
     public void listTasks(Ui ui) {
         ui.printLine();
         if (tasks.size() > 0) {
-            ui.printMessage("Here is the list of events added so far:");
+            ui.printMessage(Constants.TASK_LIST_AS_FOLLOWS);
             int eventNumber = 1;
             for (Task task : tasks) {
-                ui.printMessage(eventNumber + ") " + task.getTaskInformation());
+                ui.printMessage(eventNumber + Constants.CLOSING_BRACKET + task.getTaskInformation());
                 eventNumber++;
             }
         } else {
-            ui.printMessage("The list is empty.");
+            ui.printMessage(Constants.LIST_EMPTY_MESSAGE);
         }
         ui.printLine();
     }
@@ -90,10 +96,11 @@ public class TaskList {
             }
             tasks.remove(index - 1);
             ui.printLine();
-            ui.printMessage("The task at the mentioned index has been deleted");
+            ui.printMessage(Constants.TASK_AT_INDEX_DELETED_MESSAGE);
             ui.printLine();
         } catch (IndexOutOfBoundsException e) {
-            ui.printMessage("Invalid index entered. Please enter a valid index to be deleted");
+            LOGGER.log(Level.INFO, Constants.INDEX_TO_BE_DELETED_OUT_OF_BOUNDS_LOG);
+            ui.printMessage(Constants.RE_ENTER_VALID_INDEX_TO_DELETE_MESSAGE);
             ui.printLine();
         }
     }
@@ -113,10 +120,10 @@ public class TaskList {
             /* Converting to '0' based index */
             editTaskAtIndex(index - 1, ui);
             ui.printLine();
-            ui.printMessage("The task at the mentioned index has been edited successfully");
+            ui.printMessage(Constants.TASK_AT_INDEX_EDITED_MESSAGE);
             ui.printLine();
         } catch (IndexOutOfBoundsException e) {
-            ui.printMessage("Invalid index entered. Please enter a valid index to be edited");
+            ui.printMessage(Constants.RE_ENTER_VALID_INDEX_TO_EDIT_MESSAGE);
             ui.printLine();
         }
     }
@@ -142,7 +149,8 @@ public class TaskList {
             tasks.set(index, updatedDeadline);
             break;
         default:
-            ui.printMessage("Error encountered during execution");
+            LOGGER.log(Level.SEVERE, Constants.INVALID_TASK_TYPE_LOG);
+            ui.printMessage(Constants.ERROR_ENCOUNTERED_DURING_EXECUTION_MESSAGE);
             break;
         }
     }
@@ -156,12 +164,12 @@ public class TaskList {
     public void clearTasks(Ui ui) {
         tasks.clear();
         ui.printLine();
-        ui.printMessage("The list of tasks is cleared.");
+        ui.printMessage(Constants.TASK_LIST_CLEARED_MESSAGE);
         ui.printLine();
     }
 
     /**
-     * Lists all the tasks sorted by their priority.
+     * Lists all the tasks sorted by their priority by calling a helper function.
      *
      * @param ui This allows TaskList class to interact with User.
      */
@@ -173,22 +181,28 @@ public class TaskList {
         if (tasks.size() > 0) {
             printTasksSortedByPriority(ui, tasksSortedByPriority);
         } else {
-            ui.printMessage("The list is empty.");
+            ui.printMessage(Constants.LIST_EMPTY_MESSAGE);
         }
         ui.printLine();
     }
 
+    /**
+     * Prints the tasks sorted by their priority.
+     *
+     * @param ui This allows TaskList class to interact with User.
+     * @param tasksSortedByPriority The sorted list of tasks.
+     */
     private void printTasksSortedByPriority(Ui ui, ArrayList<Task> tasksSortedByPriority) {
         int taskNumber = 1;
-        ui.printMessage("Here is the list of tasks added so far displayed in decreasing order of priority:");
+        ui.printMessage(Constants.LIST_SORTED_BY_PRIORITY_MESSAGE);
         for (Task task : tasksSortedByPriority) {
-            ui.printMessage(taskNumber + ") " + task.getTaskInformation());
+            ui.printMessage(taskNumber + Constants.CLOSING_BRACKET + task.getTaskInformation());
             taskNumber++;
         }
     }
 
     /**
-     * Lists all the tasks sorted by date along with the days remaining.
+     * Lists all the tasks sorted by date along with the days remaining by calling a helper function.
      *
      * @param ui This allows TaskList class to interact with User.
      */
@@ -199,18 +213,24 @@ public class TaskList {
         if (tasks.size() > 0) {
             printTasksSortedByDate(ui, tasksSortedByDate);
         } else {
-            ui.printMessage("The list is empty.");
+            ui.printMessage(Constants.LIST_EMPTY_MESSAGE);
         }
         ui.printLine();
     }
 
+    /**
+     * Prints the tasks sorted by date along with the days remaining.
+     *
+     * @param ui This allows TaskList class to interact with User.
+     * @param tasksSortedByDate The sorted list of tasks.
+     */
     private void printTasksSortedByDate(Ui ui, ArrayList<Task> tasksSortedByDate) {
         int taskNumber = 1;
-        ui.printMessage("Here is the list of tasks with sorted based on the number of days left:");
+        ui.printMessage(Constants.LIST_SORTED_ON_DAYS_LEFT_MESSAGE);
         for (Task task : tasksSortedByDate) {
             if (!task.getDate().isBefore(LocalDate.now())) {
-                ui.printMessage(taskNumber + ") " + task.getTaskInformation() + " ---> " + task.numberOfDaysLeft()
-                    + " day(s) left");
+                ui.printMessage(taskNumber + Constants.CLOSING_BRACKET + task.getTaskInformation()
+                        + Constants.ARROW_SYMBOL + task.numberOfDaysLeft() + Constants.DAYS_LEFT);
                 taskNumber++;
             }
         }
@@ -228,11 +248,18 @@ public class TaskList {
         if (hasMatchedTask) {
             printMatchedTasks(keyword, ui);
         } else {
-            ui.printMessage("The list is empty.");
+            ui.printMessage(Constants.LIST_EMPTY_MESSAGE);
         }
         ui.printLine();
     }
 
+    /**
+     * Used to check if there is at least one task containing the keyword in it's description.
+     *
+     * @param keyword The word used for search.
+     * @return true if at least one task has a description containing the keyword and false otherwise
+     * @throws Exception If keyword used is empty.
+     */
     private boolean checkForMatchedTasks(String keyword) throws Exception {
         boolean hasMatchedTask = false;
         for (Task task : tasks) {
@@ -244,11 +271,18 @@ public class TaskList {
         return hasMatchedTask;
     }
 
+    /**
+     * Displays the list of tasks containing the keyword in their descriptions.
+     *
+     * @param keyword The word used for search.
+     * @param ui Used to interact with the user.
+     * @throws Exception If the keyword is empty.
+     */
     private void printMatchedTasks(String keyword, Ui ui) throws Exception {
         int taskNumber = 1;
         for (Task task : tasks) {
             if (task.hasKeyword(keyword)) {
-                ui.printMessage(taskNumber + ") " + task.getTaskInformation());
+                ui.printMessage(taskNumber + Constants.CLOSING_BRACKET + task.getTaskInformation());
                 taskNumber++;
             }
         }

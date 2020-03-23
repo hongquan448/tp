@@ -4,6 +4,6 @@ import exception.CustomException;
 
 public class MisuseOfClearCommandException extends CustomException {
     public MisuseOfClearCommandException() {
-        super("Wrong command clear events (Should be :clear )");
+        super("Wrong command to clear events (Should be :clear )");
     }
 }
