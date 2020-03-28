@@ -4,6 +4,7 @@ import exception.command.InvalidHelpCommandException;
 import task.TaskList;
 import ui.Ui;
 
+//@@author GanapathySanathBalaji
 /**
  * Command is used to print the list of commands supported.
  */
@@ -24,6 +25,6 @@ public class HelpCommand extends Command {
 
     @Override
     public void executeCommand(TaskList taskList, Ui ui) {
-        ui.printHelp();
+        ui.printHelp(true);
     }
 }

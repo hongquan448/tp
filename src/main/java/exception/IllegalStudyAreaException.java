@@ -1,5 +1,6 @@
 package exception;
 
+//@@author NizarMohd
 /**
  * This is an extension of the Exception class that exist only for StudyArea related modules.
  */

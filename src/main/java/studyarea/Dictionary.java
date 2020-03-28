@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
+//@@author NizarMohd
 /**
  * This class allows for User to loosely search certain names, address or faculties of StudyAreas.
  */

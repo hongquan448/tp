@@ -1,9 +1,11 @@
 package resourceloader;
 
+//@@author NizarMohd
 /**
  * This class contains all the back up data for Study Area Loader, in case locations.txt and dictionary.txt
  * does not exist.
  */
+
 class BackUpData {
     static final String BACKUP_DICTIONARY = "engineering~eng~engin~engine~foe\n"
             + "utown~university town~u-town~u town\n"
@@ -24,7 +26,7 @@ class BackUpData {
                      + "Ian and Peony Ferguson Study~2 College Ave West Education Resource Centre, Level 3~Utown~"
                      + "true~true~4\n"
                      + "The Study~2 College Ave West Education Resource Centre, Level 2~Utown~true~true~5\n"
-                     + "Town Plaza Seminar Rooms Waiting Area~2 College Ave West, Town Plaza, Level 2~Utown~true~"
+                     + "Town Plaza Seminar Rooms Waiting Lounge~2 College Ave West, Town Plaza, Level 2~Utown~true~"
                      + "true~4\n"
                      + "OCBC~2 College Ave West, Stephen Riady Centre, Ground Level~Utown~true~false~2\n"
                      + "SuperSnacks~2 College Ave West, Stephen Riady Centre, Ground Level~Utown~true~true~4\n"

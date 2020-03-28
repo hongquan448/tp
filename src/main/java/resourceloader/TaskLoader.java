@@ -1,9 +1,10 @@
 package resourceloader;
 
-import task.Task;
 import task.Deadline;
 import task.Event;
+import task.Task;
 import ui.Ui;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -17,6 +18,7 @@ import java.util.Scanner;
 import static ui.Constants.FILE_PATH_DICTIONARY;
 import static ui.Constants.FILE_PATH_STUDYAREAS;
 
+//@@author GanapathySanathBalaji
 /**
  * Handles the task of loading and storing events.
  */
@@ -48,7 +50,7 @@ public class TaskLoader {
      * @return events The list of events stored previously.
      */
     public ArrayList<Task> loadFile() {
-        ArrayList<Task> tasks = new ArrayList<>();;
+        ArrayList<Task> tasks = new ArrayList<>();
         File dataFile;
         Scanner s;
         Ui ui = new Ui();
@@ -104,12 +106,13 @@ public class TaskLoader {
      * @return newEvent The new event created with the details provided.
      */
     private Deadline parseDeadlineDetails(String taskDescription) throws Exception {
-        String[] details = taskDescription.split("#", 5);
+        String[] details = taskDescription.split("#", 6);
         String description = details[0];
         String date = details[1];
         String dueTime = details[2];
         String priority = details[3];
-        Deadline newDeadline = new Deadline(description, date, dueTime, priority);
+        boolean isDone = Boolean.parseBoolean(details[4]);
+        Deadline newDeadline = new Deadline(description, date, dueTime, priority, isDone);
         return newDeadline;
     }
 

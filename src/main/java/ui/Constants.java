@@ -10,7 +10,6 @@ public class Constants {
     public static final String FILE_PATH_DICTIONARY = "library" + File.separator + "dictionary.txt";
     public static final String MISSING_STUDY_AREA_DATA = "locations.txt is missing";
     public static final String BYE_COMMAND = "bye";
-    public static final String BYE_MESSAGE = "Bye!!!!!!";
     public static final String LINE = "_______________________________________________________________________________"
             + "_________________";
     public static final int MAX_LINE_LENGTH = 58;
@@ -44,29 +43,27 @@ public class Constants {
     public static final String TAB = "\t ";
     public static final String NO_SIZE_INDICATED = "Max Size is not indicated. Please indicate accordingly!";
     public static final String END_MESSAGE = "Thank you for using our study area search service!";
-    public static final String START_MESSAGE = "Welcome to OrgaNice! To start, enter \"task\" to start"
-            + " your task list! If you are in the mood to mug and you"
-            + " want to start your study area list, enter \"study\" !If"
-            + " you want to exit, enter \"bye\" !";
-    public static final String WRONG_INPUT = "Wrong input! Please enter either \"task\" or \"study\" only!";
-    public static final String TASK_COMMAND = "task";
-    public static final String STUDY_COMMAND = "study";
+    public static final String START_MESSAGE = TAB + "Welcome to OrgaNice! Below would be a list of commands useful "
+            + "for you!";
     public static final String GOODBYE_MESSAGE = "  Goodbye! Hope to see you again!";
-    public static final String INTERMEDIATE_MESSAGE = "Please enter \"task\" to continue with your event list or"
-            + " \"study\" to continue with your study area list. To leave, enter \"bye\".";
     public static final String EMPTY_LOCATION = "Location entered is empty! Please type a location to search for "
             + "StudyAreas!";
     public static final String NON_POSITIVE_INTEGER = "Integer entered cannot be zero or negative!";
-    public static final String HELP_DESCRIPTION_20 = TAB + "*All timing should follow 24 hour clock";
-    public static final String HELP_DESCRIPTION_19 = TAB + "*All dates should follow YYYY-MM-DD format";
-    public static final String HELP_DESCRIPTION_18 = TAB + "Notes:";
-    public static final String HELP_DESCRIPTION_17 = TAB + "bye --------------------------------------- Terminate task"
+    public static final String HELP_DESCRIPTION_23 = TAB + "*All timing should follow 24 hour clock";
+    public static final String HELP_DESCRIPTION_22 = TAB + "*All dates should follow YYYY-MM-DD format";
+    public static final String HELP_DESCRIPTION_21 = TAB + "Notes:";
+    public static final String HELP_DESCRIPTION_20 = TAB + "notes ------------------------------------- Enter Notes";
+    public static final String HELP_DESCRIPTION_19 = TAB + "study ------------------------------------- Enter Study "
+            + "Area search interface";
+    public static final String HELP_DESCRIPTION_18 = TAB + "bye --------------------------------------- Terminate task"
             + " interface";
-    public static final String HELP_DESCRIPTION_16 = TAB + "help -------------------------------------- View List Of "
+    public static final String HELP_DESCRIPTION_17 = TAB + "help -------------------------------------- View List Of "
             + "Commands Supported";
-    public static final String HELP_DESCRIPTION_15 = TAB + "schedule <number of task to be scheduled> - Schedule tasks";
-    public static final String HELP_DESCRIPTION_14 = TAB + "edit <index number of task> --------------- Edit the task";
-    public static final String HELP_DESCRIPTION_13 = TAB + "delete <index number of task> ------------- Delete the "
+    public static final String HELP_DESCRIPTION_16 = TAB + "schedule <number of task to be scheduled> - Schedule tasks";
+    public static final String HELP_DESCRIPTION_15 = TAB + "done <index of task> ---------------------- Mark the "
+            + "deadline as done";
+    public static final String HELP_DESCRIPTION_14 = TAB + "edit <index of task> ---------------------- Edit the task";
+    public static final String HELP_DESCRIPTION_13 = TAB + "delete <index of task> -------------------- Delete the "
             + "task";
     public static final String HELP_DESCRIPTION_12 = TAB + "search <keyword found in task> ------------ View existing "
             + "task that contains the keyword";
@@ -165,7 +162,7 @@ public class Constants {
     public static final String TASK_LIST_AS_FOLLOWS = "Here is the list of tasks added so far:";
     public static final String CLOSING_BRACKET = ") ";
     public static final String LIST_EMPTY_MESSAGE = "The list is empty.";
-    public static final String TASK_AT_INDEX_DELETED_MESSAGE = "The task at the mentioned index has been deleted";
+    public static final String TASK_AT_INDEX_DELETED_MESSAGE = "Noted! I have removed this task:";
     public static final String INDEX_TO_BE_DELETED_OUT_OF_BOUNDS_LOG = "Index specified to be deleted is out of bounds";
     public static final String RE_ENTER_VALID_INDEX_TO_DELETE_MESSAGE = "Invalid index entered. Please enter a valid"
             + " index to be deleted";
@@ -173,6 +170,9 @@ public class Constants {
             + "edited successfully";
     public static final String RE_ENTER_VALID_INDEX_TO_EDIT_MESSAGE = "Invalid index entered. Please enter a"
             + " valid index to be edited";
+    public static final String RE_ENTER_VALID_INDEX_TO_MARK_AS_DONE_MESSAGE = "Invalid index entered. Please enter a"
+            + " valid index to be marked as done";
+    public static final String DEADLINE_MARKED_AS_DONE = "Nice! I've marked this deadline as done!";
     public static final String INVALID_TASK_TYPE_LOG = "Task type of the task to be edited not recognized";
     public static final String ERROR_ENCOUNTERED_DURING_EXECUTION_MESSAGE = "Error encountered during execution";
     public static final String TASK_LIST_CLEARED_MESSAGE = "The list of tasks is cleared.";
@@ -243,10 +243,12 @@ public class Constants {
     public static final String APPLICATION_STARTED_EXECUTION = "Application started Execution";
     public static final String APPLICATION_GOING_TO_EXIT = "Application is going to exit";
     public static final String TASK_MODE = "Application transitioning to task mode";
-    public static final String STUDY_AREA_MODE = "Application transitioning to study area mode";
-    public static final String WRONG_COMMAND = "Wrong command entered by user";
     public static final String APPLICATION_CLOSED_SUCCESSFULLY = "Application closed successfully";
-    public static final int TASK_MODE_SELECTED = 1;
-    public static final int STUDY_AREA_MODE_SELECTED = 2;
-    public static final int EXIT = -1;
+    public static final String SHORT_DESCRIPTION = "Description of location is too short!";
+    public static final String STUDY_AREA_COMMAND = "study";
+    public static final String TASK_S_IN_YOUR_LIST = " task(s) in your list";
+    public static final String NOW_YOU_HAVE = "Now you have ";
+    public static final String SEARCH_LIST_MESSAGE = "The list of tasks containing the mentioned keyword in their"
+            + " description are as follows:";
+    public static final String NOTES_COMMAND = "notes";
 }

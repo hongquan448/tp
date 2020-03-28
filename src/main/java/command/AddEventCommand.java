@@ -5,8 +5,10 @@ import exception.command.EventDetailsNotProvidedException;
 import task.Event;
 import task.TaskList;
 import ui.Ui;
+
 import java.time.LocalDate;
 
+//@@author GanapathySanathBalaji
 /**
  * This command is used to add new events to the TaskList.
  */
@@ -47,7 +49,7 @@ public class AddEventCommand extends Command {
     }
 
     @Override
-    public void executeCommand(TaskList taskList, Ui ui) throws Exception {
+    public void executeCommand(TaskList taskList, Ui ui)  {
         taskList.addTask(newEvent, ui);
     }
 

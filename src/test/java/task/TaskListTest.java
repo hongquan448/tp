@@ -6,6 +6,7 @@ import ui.Ui;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+//@@author GanapathySanathBalaji
 /**
  * Contains all the test related to EventList class.
  */

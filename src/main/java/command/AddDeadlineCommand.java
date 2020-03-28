@@ -5,9 +5,12 @@ import exception.command.EventDetailsNotProvidedException;
 import task.Deadline;
 import task.TaskList;
 import ui.Ui;
+
 import java.time.LocalDate;
+
 import static command.AddEventCommand.DATE_BEFORE_CURRENT_DATE_ERROR_MESSAGE;
 
+//@@author GanapathySanathBalaji
 /**
  * This command is used to add new deadlines to the TaskList.
  */
@@ -38,12 +41,12 @@ public class AddDeadlineCommand extends Command {
         String date = details[1].substring(2);
         String dueTime = details[2].substring(2);
         String priority = details[3].substring(2);
-        newDeadline =  new Deadline(description, date, dueTime, priority);
+        newDeadline =  new Deadline(description, date, dueTime, priority, false);
         assert !newDeadline.getDate().isBefore(LocalDate.now()) : DATE_BEFORE_CURRENT_DATE_ERROR_MESSAGE;
     }
 
     @Override
-    public void executeCommand(TaskList taskList, Ui ui) throws Exception {
+    public void executeCommand(TaskList taskList, Ui ui)   {
         taskList.addTask(newDeadline, ui);
     }
 

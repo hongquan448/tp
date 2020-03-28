@@ -48,7 +48,7 @@ public class StudyAreaList {
         return this.studyAreaList;
     }
 
-
+    //@@author NizarMohd
     /**
      * This method checks for duplicate flags.
      *
@@ -70,7 +70,6 @@ public class StudyAreaList {
      * @param index This is the index in which the method is check if only flag exist.
      * @throws IllegalStudyAreaException if only flag is entered by user.
      */
-
     public static void checkOnlyFlag(String[] commands, int index) throws IllegalStudyAreaException {
         if (commands[index].length() == 1) {
             LOGGER.log(Level.INFO, IDENTIFIER_MISSING_LOG);
@@ -202,7 +201,6 @@ public class StudyAreaList {
      * @param key This is the search key entered by User.
      * @return True if can be found in either case. False if not found in both cases.
      */
-
     public static boolean containsKey(String name, String address, String faculty, String key) {
         if (name.contains(key) || name.contains(Dictionary.parseKey(key))) {
             return true;
@@ -223,7 +221,6 @@ public class StudyAreaList {
      * @return The method returns a boolean value, true if the study area meets the criterion stated by the current
      *              flag and false if otherwise.
      */
-
     public static boolean isAvailStudyArea(String flag, boolean isAvail, int index, StudyArea studyArea,
                                             String[] flags) {
         boolean carryOn = flag != null && isAvail && index != 1; // carryOn indicates if current StudyArea iteration

@@ -4,6 +4,7 @@ import exception.command.MisuseOfClearCommandException;
 import task.TaskList;
 import ui.Ui;
 
+//@@author GanapathySanathBalaji
 /**
  * This command is used to clear all the tasks in the list.
  */

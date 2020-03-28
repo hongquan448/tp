@@ -7,6 +7,7 @@ import task.TaskList;
 import task.TaskScheduler;
 import ui.Ui;
 
+//@@author GanapathySanathBalaji
 /**
  * This command is used to create schedule based on user input if its feasible.
  */
@@ -36,6 +37,7 @@ public class CreateScheduleCommand extends Command {
             throw new NumberOfTasksToBeScheduledNotAnIntegerException();
         }
     }
+
 
     @Override
     public void executeCommand(TaskList taskList, Ui ui) {

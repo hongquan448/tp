@@ -10,7 +10,6 @@ import exception.command.TaskDateBeforeCurrentDateException;
 import exception.command.TaskPriorityNotIntegerException;
 import ui.Constants;
 import ui.Ui;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -21,6 +20,7 @@ import java.util.logging.Logger;
 
 import static ui.Constants.ENTER_NEW_DESCRIPTION_MESSAGE;
 
+//@@author GanapathySanathBalaji
 /**
  * Represents an event and contains the related functions.
  */
@@ -419,7 +419,6 @@ public class Event extends Task {
     private void printUpdatedDetails(Ui ui) {
         ui.printMessage(Constants.UPDATED_DETAILS);
         ui.printMessage(this.getTaskInformation());
-        ui.printLine();
     }
 
     /**
