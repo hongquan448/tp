@@ -2,6 +2,7 @@ package notes.modules.command;
 
 import notes.modules.ModuleManager;
 
+//@@author terrytay
 public class AddCommand implements Command {
     ModuleManager moduleManager;
     String message;

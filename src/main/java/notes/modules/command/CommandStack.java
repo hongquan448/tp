@@ -2,6 +2,7 @@ package notes.modules.command;
 
 import java.util.LinkedList;
 
+//@@author terrytay
 public class CommandStack {
     /**
      * Adapted from: https://www.developer.com/design

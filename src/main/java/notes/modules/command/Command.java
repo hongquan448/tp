@@ -1,6 +1,6 @@
 package notes.modules.command;
 
-
+//@@author terrytay
 public interface Command {
 
     public void execute();

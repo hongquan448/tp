@@ -3,6 +3,7 @@ package notes.modules.command;
 
 import java.util.ArrayList;
 
+//@@author terrytay
 public class ListCommand implements Command {
     private ArrayList<String> messages;
 

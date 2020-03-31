@@ -250,5 +250,24 @@ public class Constants {
     public static final String NOW_YOU_HAVE = "Now you have ";
     public static final String SEARCH_LIST_MESSAGE = "The list of tasks containing the mentioned keyword in their"
             + " description are as follows:";
+
+
+
     public static final String NOTES_COMMAND = "notes";
+    public static final String NOTES_WELCOME_MESSAGE = "Welcome to OrgaNice's Notes!\n"
+            + "Notes are stored based on modules.\n"
+            + "To get started: add a module, enter a module and start adding notes!";
+    public static final String ADD_MODULE_MESSAGE = "[add modulecode] to add a module";
+    public static final String REMOVE_MODULE_MESSAGE = "[remove modulecode] to add a module";
+    public static final String ENTER_MODULE_MESSAGE = "[enter modulecode] to enter notes for its notes";
+    public static final String LIST_MODULE_MESSAGE = "[list] to list modules";
+    public static final String EXIT_MODULE_MESSAGE = "[exit] to go back to OrgaNice main page";
+    public static final String HELP_MODULE_MESSAGE = "[help] to list all the commands again";
+    public static final String INVALID_NOTES_COMMAND_MESSAGE = "Please enter a valid command.";
+
+    public static final String LINE_BREAK = "______________________________";
+
+    public static final String NOTES_PATH = "library/notes.txt";
+    public static final String NOTES_FILE_NOT_FOUND = "No notes are created as of now. All notes will automatically"
+            + "be saved.";
 }

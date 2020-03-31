@@ -2,7 +2,7 @@ package seedu.duke;
 
 
 import command.Command;
-import command.studyarea.StudyAreaCommand;
+import command.StudyAreaCommand;
 import exception.IllegalStudyAreaException;
 import notes.NotesInvoker;
 import parser.Parser;
@@ -20,10 +20,10 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-
 import static ui.Constants.BYE_COMMAND;
 import static ui.Constants.NOTES_COMMAND;
 import static ui.Constants.STUDY_AREA_COMMAND;
+
 
 /**
  * This is Duke class, which forms the main class of the program.
@@ -34,10 +34,11 @@ public class Duke {
     protected static StudyAreaLoader studyAreaLoader;
     private static TaskList taskList = new TaskList();
     private static StudyAreaList studyAreaList;
-    private static Ui ui;
+    private static Ui ui = new Ui();
     private static Parser parser;
     private static final Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
+    //@@author terrytay
     /**
      * This is the constructor to create a new Duke program every time user runs the main loop.
      */
@@ -45,7 +46,6 @@ public class Duke {
         try {
             setupLogger();
             parser = new Parser();
-            ui = new Ui();
             taskLoader = new TaskLoader(Constants.FILE_PATH_EVENTS);
             taskList = new TaskList(taskLoader.loadFile());
             studyAreaLoader = new StudyAreaLoader(Constants.FILE_PATH_STUDY_AREAS);
@@ -58,35 +58,39 @@ public class Duke {
         }
     }
 
+    //@@author terrytay
     /**
      * Runs all the command for tasks.
-     *
-     * @param taskList Refers to the current list of tasks.
-     * @param ui UI object used to interact with user.
-     * @param parser Object used to parse the user input into commands.
-     * @param studyAreaList Object is used to access all existing study area.
      */
-    public static void runCommands(TaskList taskList, Ui ui, Parser parser, StudyAreaList studyAreaList) {
+    public static void runCommands() {
         String fullCommand;
-        Command command;
-
         fullCommand = ui.getUserIn().trim().toLowerCase();
         while (!fullCommand.equals(BYE_COMMAND)) {
             try {
-                if (fullCommand.equals(STUDY_AREA_COMMAND)) {
-                    new StudyAreaCommand().executeStudyCommand(studyAreaList, ui);
-                } else if (fullCommand.equals(NOTES_COMMAND)) {
-                    new NotesInvoker();
-                } else {
-                    command = parser.parseCommand(fullCommand);
-                    command.executeCommand(taskList, ui);
-                }
+                switchCommands(fullCommand);
             } catch (Exception exception) {
                 ui.printLine();
                 ui.printMessage(exception.getMessage());
                 ui.printLine();
             }
             fullCommand = ui.getUserIn().trim().toLowerCase();
+        }
+    }
+
+    //@@author terrytay
+    /**
+     * This method will choose the commands to execute based on user input. Allows for abstraction.
+     * @param fullCommand this is the user input.
+     * @throws Exception when user enters any illegal commands.
+     */
+    private static void switchCommands(String fullCommand) throws Exception {
+        if (fullCommand.equals(STUDY_AREA_COMMAND)) {
+            new StudyAreaCommand().executeStudyCommand(studyAreaList, ui);
+        } else if (fullCommand.equals(NOTES_COMMAND)) {
+            new NotesInvoker();
+        } else {
+            Command command = parser.parseCommand(fullCommand);
+            command.executeCommand(taskList, ui);
         }
     }
 
@@ -117,7 +121,7 @@ public class Duke {
         ui.printWelcomeMessage();
         LOGGER.log(Level.INFO, Constants.APPLICATION_STARTED_EXECUTION);
         LOGGER.log(Level.INFO, Constants.TASK_MODE);
-        runCommands(taskList, ui, parser, studyAreaList);
+        runCommands();
         taskLoader.saveTasks(taskList.tasks);
         LOGGER.log(Level.INFO, Constants.APPLICATION_GOING_TO_EXIT);
         ui.printByeMessage();

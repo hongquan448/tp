@@ -1,7 +1,6 @@
 package notes.modules.command;
 
-import java.util.ArrayList;
-
+//@@author terrytay
 public class ExitCommand implements Command {
 
     public void execute() {

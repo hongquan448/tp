@@ -1,24 +1,28 @@
 package notes;
 
+import ui.Constants;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 
-
+//@@author terrytay
 public class NotesInvoker {
 
     /**
      * Constructor to invoke Notes app.
+     * @throws IOException exception for module import/export
      */
-    public NotesInvoker() {
+    public NotesInvoker() throws IOException {
         Notes notes = new Notes();
+        System.out.println(Constants.NOTES_WELCOME_MESSAGE);
+        System.out.println(Constants.LINE_BREAK);
+        displayMenu();
+
         Scanner input = new Scanner(System.in);
         String choice;
+
         do {
-            System.out.println("[add] to add a module");
-            System.out.println("[remove] to remove a module");
-            System.out.println("[enter] to choose a module to enter notes");
-            System.out.println("[list] to list modules");
-            System.out.println("[exit] to exit");
             String userInput = input.nextLine();
             choice = userInput.split(" ")[0];
             String code;
@@ -39,11 +43,25 @@ public class NotesInvoker {
                 notes.listModules();
                 break;
             case "exit":
+                notes.exportModules();
+                break;
+            case "help":
+                displayMenu();
                 break;
             default:
-                System.out.println("Please enter a valid command.");
+                System.out.println(Constants.INVALID_NOTES_COMMAND_MESSAGE);
             }
 
         } while (!choice.equals("exit"));
+        System.out.println("Thank you for using notes.");
+    }
+
+    private void displayMenu() {
+        System.out.println(Constants.ADD_MODULE_MESSAGE);
+        System.out.println(Constants.REMOVE_MODULE_MESSAGE);
+        System.out.println(Constants.ENTER_MODULE_MESSAGE);
+        System.out.println(Constants.LIST_MODULE_MESSAGE);
+        System.out.println(Constants.EXIT_MODULE_MESSAGE);
+        System.out.println(Constants.HELP_MODULE_MESSAGE);
     }
 }

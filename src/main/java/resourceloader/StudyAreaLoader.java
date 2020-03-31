@@ -18,17 +18,19 @@ import static ui.Constants.MISSING_STUDY_AREA_DATA;
 /**
  * This class loads all the required information of Study Areas that is stored in location.txt.
  */
-
+//@@author terrytay
 public class StudyAreaLoader {
     private static final String DIVIDER = "~";
     private String url;
     private File file;
 
+    //@@author terrytay
     public StudyAreaLoader(String url) throws IllegalStudyAreaException {
         this.url = url;
         loadFile();
     }
 
+    //@@author terrytay
     /**
      * Loads content from location.txt and dictionary.txt.
      * @throws IllegalStudyAreaException if file is not found.
@@ -44,6 +46,7 @@ public class StudyAreaLoader {
         }
     }
 
+    //@@author terrytay
     /**
      * Return the imported study area file as an ArrayList for the main controller
      * to add it to its database.

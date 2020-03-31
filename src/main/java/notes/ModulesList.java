@@ -4,7 +4,9 @@ import notes.modules.ModuleManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
+//@@author terrytay
 public class ModulesList {
     static ModulesList instance = null;
     private HashMap<String, ArrayList<String>> modules;
@@ -43,8 +45,15 @@ public class ModulesList {
      */
     public void deleteModule(String code) {
         if (modules.containsKey(code)) {
-            modules.remove(code);
-            System.out.println(code + " has been removed");
+            System.out.println("Are you sure you want to remove " + code
+                    + "? [Y/N]");
+            Scanner input = new Scanner(System.in);
+            if (input.nextLine().contains("Y")) {
+                modules.remove(code);
+                System.out.println(code + " has been removed");
+            } else {
+                System.out.println("Remove operation has been cancelled");
+            }
         } else {
             System.out.println("Module is not found.");
         }
@@ -82,5 +91,13 @@ public class ModulesList {
             System.out.println("No modules have been added yet.");
         }
         System.out.println(modules.keySet());
+    }
+
+    public void importModules(HashMap<String, ArrayList<String>> modules) {
+        this.modules = modules;
+    }
+
+    public HashMap<String, ArrayList<String>> exportModules() {
+        return this.modules;
     }
 }

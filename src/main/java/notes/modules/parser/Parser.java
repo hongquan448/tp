@@ -6,7 +6,7 @@ import notes.modules.command.Command;
 import notes.modules.command.ExitCommand;
 import notes.modules.command.ListCommand;
 
-
+//@@author terrytay
 public class Parser {
     private String userCommandText;
     private String userInput;

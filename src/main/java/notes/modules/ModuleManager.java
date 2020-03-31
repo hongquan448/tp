@@ -9,6 +9,7 @@ import notes.modules.parser.Parser;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//@@author terrytay
 public class ModuleManager {
     private String code;
     private ArrayList<String> messages;
@@ -73,7 +74,7 @@ public class ModuleManager {
     }
 
     private void showMenu() {
-        System.out.println("[add] to add a note");
+        System.out.println("[add ...message...] to add a note");
         System.out.println("[undo] to undo");
         System.out.println("[redo] to redo");
         System.out.println("[list] to list notes");

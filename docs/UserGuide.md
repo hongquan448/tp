@@ -2,11 +2,28 @@
 
 ## Table Of Contents
 1. [Introduction](#intro)
-2. [Quick Start](#quick-start)
-3. [Features](#features)<br>3.1. [Add new Deadline task](#add-deadline)<br>3.2. [Add new Event task](#add-event)<br>3.3. [Delete task](#delete)<br>3.4. [Mark deadline as done](#done)<br>3.5. [Edit task](#edit)<br>3.6. [Clear list of tasks](#clear)<br>3.7. [View list of tasks](#view)<br>3.8. [View list of tasks sorted by their priority](#priority)<br>3.9. [View list of tasks in a countdown format](#countdown)<br>3.10. [Search tasks](#search)<br>3.11. [View commands supported](#help)<br>3.12. [Schedule tasks](#schedule)<br>3.13. [Study Area Search Feature](#studyArea)<br>3.14. [Exit the Application / Study Area interface](#exit)<br>3.15. [Saving the data](#save-tasks)<br>3.16. [Clearing old tasks](#clear-old-tasks)<br>3.17. [Viewing tasks in calendar format](#calendar)<br>
-4. [FAQ](#faq)
-5. [Command Summary](#command-summary)
-6. [Formats Used](#formats)
+1. [Quick Start](#quick-start)
+1. [Features](#features) <br>
+    3.1. [Add new Deadline task](#add-deadline) <br>
+    3.2. [Add new Event task](#add-event) <br>
+    3.3. [Delete task](#delete) <br>
+    3.4. [Mark deadline as done](#done) <br>
+    3.5. [Edit task](#edit) <br>
+    3.6. [Clear list of tasks](#clear) <br>
+    3.7. [View list of tasks](#view) <br>
+    3.8. [View list of tasks sorted by their priority](#priority) <br>
+    3.9. [View list of tasks in a countdown format](#countdown) <br>
+    3.10. [Search tasks](#search) <br>
+    3.11. [View commands supported](#help) <br>
+    3.12. [Schedule tasks](#schedule) <br>
+    3.13. [Study Area Search Feature](#studyArea) <br>
+    3.14. [Exit the Application / Study Area interface](#exit) <br>
+    3.15. [Saving the data](#save-tasks) <br>
+    3.16. [Clearing old tasks](#clear-old-tasks) <br>
+    3.17. [Viewing tasks in calendar format](#calendar) <br>
+1. [FAQ](#faq)
+1. [Command Summary](#command-summary)
+1. [Formats Used](#formats)
 
 
 <a name="intro"></a>
@@ -536,7 +553,9 @@ scheduled over non contiguous days) .
 
 ### 3.13 Study Area Search Feature
 
-This feature allows you to search for study areas based on criteria that you desire. 
+You can search for study areas based on criteria that you desire by using this feature. You are free to loosely search. 
+For example, if you enter as [this](#search-by-name-address-or-faculty), you will receive a list of  places related 
+to the name *Starbucks* as "bux" is a common abbreviation used for it.
 
 <a name="enterStudyArea"></a>
 #### 3.13.1 Entering Study Area Search Interface
@@ -547,7 +566,6 @@ guided to the study area search interface.
 #### Usage
 
 Example of usage: 
-
 `study`
 
 Expected Outcome:
@@ -567,19 +585,21 @@ ports availability, environment and size capacity. For  name, address or faculty
 as a string. For other supported conditions, flags have to be used. 
 
 Below are the supported flags: 
-   * -s {size}  : To locate a study area based on the capacity that it can manage.
+   * -s {size}  : To locate a study area that can facilitate the size of pax entered.
    * -p         : To locate a study area based on the availability of ports.
    * -i         : To locate a study area that are indoors.
    * -o         : To locate a study area that are outdoors.
 
-Note: if name, address or faculty is specified, flags will have to precede either the name,address or faculty.
+Note: 
+
+{name\address\faculty} {flags} is the basic format to search for Study Areas. You can enter either argument, or both.
+If both arguments are specified, flags will have to precede either the name,address or faculty.
 
 #### Usage
 
 #### Search by name, address or faculty 
 
 Example of usage:
-
 `bux`
 
 Expected Outcome:
@@ -610,8 +630,7 @@ Expected Outcome:
 #### Search by name, address or faculty and with flags
 
 Example of usage:
-
-`bux - o`
+`bux -o`
 
 Expected Outcome:
 
@@ -628,6 +647,37 @@ Expected Outcome:
          __________________________________________________________
          Please enter the location for your desired study area.
     ________________________________________________________________________________________________
+
+__NOTE__: When using this format, flags must always come after the location, name or address. Else, the system will 
+return an error message.
+
+### Search by flags only 
+
+Example of usage : 
+`-s 6`
+
+Expected output:
+
+    ________________________________________________________________________________________________
+         Here are the available study areas!
+         __________________________________________________________
+         Name: EA Level 4
+         Address: 9 Engineering Drive 1,EA, Level 4, Outside Staff
+         Offices
+         Faculty: Engineering
+         Port: true
+         Indoor: false
+         Maximum number of Pax: 6
+         __________________________________________________________
+         Please enter the location for your desired study area.
+    ________________________________________________________________________________________________
+
+#### Future Enhancements
+
+   The current implementation does not include real-time availability of the study areas. In version 3.0 we hope to be
+   able to retrieve real-time availability of public study areas, like the ones in U-Town. In order to do so we would 
+   require access to real-time data like CCTV monitors of the study areas to detect if there is an available seat at 
+   a specific point of time at a specific area.
 
 [comment]: # (@@author )     
 <a name="exit"></a>
@@ -716,17 +766,26 @@ The tasklist only includes the tasks which have date beyond the current date. Th
 
 ## 4. FAQ
     Q: How to transfer the task list data from one computer to an other computer?
-    A:      Just copy the "TaskList.txt" file which could be found at the same directory
-        as the jar file and paste it to the location containing the jar file in the other
-        computer. This should transfer the required data.
+    A: Just copy the "TaskList.txt" file which could be found at the same directory
+       as the jar file and paste it to the location containing the jar file in the other
+       computer. This should transfer the required data.
+       
+    Q: The software says that library/TaskList.txt does not exist. What do I do?
+    A: Go to the software's root folder and check to see if the library folder exist. If so, delete the library folder 
+       and rerun the software. The software would have created a fresh set of data files required for the system to run.
+       
+    Q: The software says that library/locations.txt or library/dictionary.txt does not exist. What do I do?
+    A: Go to the software's root folder and check to see if the library folder exist. Proceed to check if TaskList.txt 
+       exist. If so, transfer it to a temporary folder. Delete the library folder and rerun the software. Transfer the 
+       content from the old TaskList.txt to the new TaskList.txt
 
 <a name="command-summary"></a>
-
 
 [comment]: # (@@author GanapathySanathBalaji)
 
 ## 5. Command Summary
 
+### Organice Main Features
 `deadline <deadline details> /d <date> /t <due time> /p <priority of deadline>` - Adds a new Deadline task to the list of tasks <br>
 `event <event details> /d <date> /s <start time> /e <end time> /p <priority of event>` - Adds a new Event task to the list of tasks <br>
 `delete <index number of task>` - Deletes task at specified index <br>
@@ -739,6 +798,10 @@ The tasklist only includes the tasks which have date beyond the current date. Th
 `search <keyword found in task>` - Lists all matching tasks in the list containing the keyword <br>
 `bye` - Exit the Application / Study Area interface <br>
 `study` - Enter study area search interface <br>
+
+### Study Area Search Interface
+`{name\address\faculty} {flags}` - Returns a list of Study Areas, if any of the existing data matches the requirement 
+entered. Click [here](#3132-start-search) for more details on how {name\address\faculty} and {flags} should be entered.
 
 <a name="formats"></a>
 
